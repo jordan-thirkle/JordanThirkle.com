@@ -14,8 +14,13 @@ I needed a central hub to host my diverse portfolio of games, SaaS apps, and wri
 ## Overview
 It serves as my digital home and lead generation funnel. Built with an "Islands Architecture," it ships 0kb of JavaScript for static articles, only hydrating the interactive command palette and engagement docks.
 
-## Key Features
-* Perfect 100/100 Lighthouse performance score
-* Markdown-powered blog for rapid SEO content creation
-* Built-in "Uses" page for affiliate monetization
-* Integrated comment system via Giscus
+## Technical Deep Dive
+
+### Islands Architecture
+The primary challenge was maintaining a "Senior Dev" aesthetic (fast, responsive, animations) while keeping the bundle size near zero. By using Astro, I implemented an **Islands Architecture** where only the interactive `CommandPalette` and `EngagementDock` are hydrated as React components. The rest of the site is static HTML/CSS, resulting in instantaneous page transitions and perfect Lighthouse scores.
+
+### Custom Search & Filtering
+Instead of reaching for a heavy search library like Algolia for a small site, I built a custom search index using Astro's content collections. The `CommandPalette` performs weighted searches across titles, tags, and descriptions, providing a high-performance "Spotlight" experience without the overhead of external API calls.
+
+### Refined UI/UX
+The site uses a strict "Zinc" color palette and a custom typography system based on Inter and Outfit. I prioritized micro-interactions, such as the command-palette shortcut (⌘K) and the client-side project filtering, to ensure the site feels like a high-end desktop application rather than a static webpage.

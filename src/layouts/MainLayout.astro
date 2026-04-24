@@ -28,8 +28,20 @@ const blogs = await getCollection('blog');
 const projects = await getCollection('projects');
 
 const searchData = [
-  ...blogs.map(post => ({ name: post.data.title, href: `/blog/${post.id}`, category: 'Blog' })),
-  ...projects.map(proj => ({ name: proj.data.title, href: `/projects/${proj.id}`, category: 'Project' })),
+  ...blogs.map(post => ({ 
+    name: post.data.title, 
+    href: `/blog/${post.id}`, 
+    category: 'Blog',
+    description: post.data.description,
+    tags: post.data.tags 
+  })),
+  ...projects.map(proj => ({ 
+    name: proj.data.title, 
+    href: `/projects/${proj.id}`, 
+    category: 'Project',
+    description: proj.data.description,
+    tags: proj.data.tech 
+  })),
 ];
 ---
 

@@ -2,10 +2,13 @@
 import { getCollection } from 'astro:content';
 import MainLayout from '@/layouts/MainLayout.astro';
 import ProjectCard from '@/components/astro/ProjectCard.astro';
+import { ProjectFilters } from '@/components/react/ProjectFilters';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const categories = [...new Set(projects.map(p => p.data.category))];
 
 const title = "Projects | Jordan Thirkle";
 const description = "A collection of my recent SaaS, Games, and Open Source projects.";
@@ -20,10 +23,56 @@ const description = "A collection of my recent SaaS, Games, and Open Source proj
       </p>
     </header>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <ProjectFilters client:load categories={categories} />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="project-grid">
       {projects.map((project) => (
         <ProjectCard project={project} />
       ))}
     </div>
   </div>
+
+  <script>
+    import { activeProjectFilter } from '@/store/projects';
+
+    const grid = document.getElementById('project-grid');
+    const cards = document.querySelectorAll('.project-card');
+
+    activeProjectFilter.subscribe((filter) => {
+      cards.forEach((card) => {
+        const element = card as HTMLElement;
+        const category = element.dataset.category;
+        const tech = element.dataset.tech?.split(',') || [];
+
+        if (!filter || category === filter || tech.includes(filter)) {
+          element.style.display = 'block';
+        } else {
+          element.style.display = 'none';
+        }
+      });
+    });
+
+    // Handle clicks on tags within cards
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('.filter-link') as HTMLElement;
+      
+      if (link && window.location.pathname === '/projects') {
+        e.preventDefault();
+        const filter = link.dataset.filter;
+        if (filter) {
+          activeProjectFilter.set(filter);
+          const url = new URL(window.location.href);
+          url.searchParams.set('filter', filter);
+          window.history.pushState({}, '', url);
+        }
+      }
+    });
+    // Handle popstate for back/forward navigation
+    window.addEventListener('popstate', () => {
+      const params = new URLSearchParams(window.location.search);
+      const filter = params.get('filter');
+      activeProjectFilter.set(filter);
+    });
+  </script>
 </MainLayout>

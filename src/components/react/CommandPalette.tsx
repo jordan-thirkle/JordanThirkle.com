@@ -8,6 +8,8 @@ interface SearchItem {
   name: string;
   href: string;
   category: string;
+  description?: string;
+  tags?: string[];
 }
 
 interface Props {
@@ -50,10 +52,15 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
   const allSearchableItems = [...staticItems, ...searchData];
 
   const filteredItems = query 
-    ? allSearchableItems.filter(item => 
-        item.name.toLowerCase().includes(query.toLowerCase()) ||
-        item.category.toLowerCase().includes(query.toLowerCase())
-      )
+    ? allSearchableItems.filter(item => {
+        const q = query.toLowerCase();
+        return (
+          item.name.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q) ||
+          item.description?.toLowerCase().includes(q) ||
+          item.tags?.some(tag => tag.toLowerCase().includes(q))
+        );
+      })
     : quickAccessItems;
 
   return (
