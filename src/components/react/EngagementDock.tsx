@@ -50,21 +50,17 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
 
   const handleCopyThread = () => {
     const header = `${title} 🧵\n\n`;
-    const body = `I just published a new update on the Hub. Here is the technical breakdown:\n\n${currentUrl}\n\n`;
-    const footer = `@jordan_Thirkle #BuildInPublic`;
+    const intro = `I just published a new technical update on the Hub. Here is the breakdown:\n\n${currentUrl}\n\n`;
+    const footer = `@jordan_Thirkle #BuildInPublic #AI #Solopreneur`;
     
-    const fullText = `${header}${body}${footer}`;
+    // Create a series of "tweets"
+    const tweets = [
+      `${header}${intro}(1/2)`,
+      `Check out the full post for the architectural deep-dive and micro-wins from this sprint. (2/2)\n\n${footer}`
+    ];
     
-    // Simple splitting logic if it exceeds 280 (though for now we just format it nicely)
-    if (fullText.length > 280) {
-      const part1 = `${header}I just published a new update on the Hub. (1/2)\n\n${currentUrl}`;
-      const part2 = `The full technical breakdown is live. Check it out to see the progress. (2/2)\n\n@jordan_Thirkle #BuildInPublic`;
-      navigator.clipboard.writeText(`${part1}\n\n---\n\n${part2}`);
-      showToast('Thread split & copied!', 'success');
-    } else {
-      navigator.clipboard.writeText(fullText);
-      showToast('Formatted for X!', 'success');
-    }
+    navigator.clipboard.writeText(tweets.join('\n\n---\n\n'));
+    showToast('Thread drafted & copied!', 'success');
     setIsShareOpen(false);
   };
 

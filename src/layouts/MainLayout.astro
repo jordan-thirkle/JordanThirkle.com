@@ -106,6 +106,37 @@ const searchData = [
 		</noscript>
 
 		<ClientRouter />
+
+		<!-- JSON-LD -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Jordan Thirkle",
+				"url": "https://jordanthirkle.com",
+				"jobTitle": "Full-Stack Architect",
+				"description": "Senior Full-Stack Developer specializing in high-performance web applications, minimalist architecture, and product engineering.",
+				"sameAs": [
+					"https://twitter.com/jordan_thirkle",
+					"https://github.com/jordan-thirkle",
+					"https://linkedin.com/in/jordanthirkle"
+				]
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "SoftwareSourceCode",
+				"name": "Jordan Thirkle Portfolio (Creator Hub)",
+				"description": "Minimalist, high-performance portfolio built with Astro and React.",
+				"codeRepository": "https://github.com/jordan-thirkle/creator-hub",
+				"programmingLanguage": ["TypeScript", "Astro", "React"],
+				"author": {
+					"@type": "Person",
+					"name": "Jordan Thirkle"
+				}
+			}
+		</script>
 	</head>
 	<body class="bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col min-h-screen">
 		<ToastProvider client:load />
