@@ -3,9 +3,9 @@ import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
 import { ToastProvider } from '@/components/react/ToastProvider';
 import { CommandPalette } from '@/components/react/CommandPalette';
-import { EngagementDock } from '@/components/react/EngagementDock';
 import Navbar from '@/components/astro/Navbar.astro';
 import Footer from '@/components/astro/Footer.astro';
+import { getCollection } from 'astro:content';
 
 interface Props {
 	title?: string;
@@ -15,13 +15,22 @@ interface Props {
 }
 
 const {
-	title = 'Jordan Thirkle | Creator Hub',
-	description = 'A highly optimized, minimalist developer portfolio and blog.',
+	title = 'Jordan Thirkle | Full-Stack Developer & Architect',
+	description = 'Senior Full-Stack Developer specializing in high-performance web applications, minimalist architecture, and product engineering.',
 	image = '/og-image.png',
 	canonicalURL = new URL(Astro.url.pathname, Astro.site),
 } = Astro.props;
 
-const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${title} | Jordan Thirkle`;
+const formattedTitle = title === 'Jordan Thirkle | Full-Stack Developer & Architect' ? title : `${title} | Jordan Thirkle`;
+
+// Fetch search data
+const blogs = await getCollection('blog');
+const projects = await getCollection('projects');
+
+const searchData = [
+  ...blogs.map(post => ({ name: post.data.title, href: `/blog/${post.id}`, category: 'Blog' })),
+  ...projects.map(proj => ({ name: proj.data.title, href: `/projects/${proj.id}`, category: 'Project' })),
+];
 ---
 
 <!doctype html>
@@ -32,6 +41,7 @@ const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${tit
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="alternate" type="application/rss+xml" title="Jordan Thirkle | Blog" href="/rss.xml" />
 
 		<!-- Canonical URL -->
 		<link rel="canonical" href={canonicalURL} />
@@ -48,7 +58,7 @@ const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${tit
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={new URL(image, Astro.url)} />
 
-		<!-- Twitter -->
+		<!-- X -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={formattedTitle} />
@@ -64,7 +74,7 @@ const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${tit
 	</head>
 	<body class="bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col min-h-screen">
 		<ToastProvider client:load />
-		<CommandPalette client:load />
+		<CommandPalette client:load searchData={searchData} />
 		
 		<Navbar />
 		
@@ -74,8 +84,6 @@ const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${tit
 
 		<Footer />
 		
-		<EngagementDock client:idle />
-
 		<style is:global>
 			:root {
 				--accent: 255, 255, 255;

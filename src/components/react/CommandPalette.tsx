@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '@nanostores/react';
 import { isSearchOpen } from '@/store';
-import { Search, Command, Book, Layout, User, Settings } from 'lucide-react';
+import { Search, Command, Book, Layout, Settings, Mail } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export const CommandPalette: React.FC = () => {
+interface SearchItem {
+  name: string;
+  href: string;
+  category: string;
+}
+
+interface Props {
+  searchData: SearchItem[];
+}
+
+export const CommandPalette: React.FC<Props> = ({ searchData }) => {
   const isOpen = useStore(isSearchOpen);
   const [query, setQuery] = useState('');
+  const [isMac, setIsMac] = useState(true);
 
   useEffect(() => {
+    setIsMac(navigator.userAgent.toUpperCase().indexOf('MAC') >= 0);
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
@@ -23,12 +36,25 @@ export const CommandPalette: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const items = [
-    { name: 'Home', icon: Layout, href: '/' },
-    { name: 'Blog', icon: Book, href: '/blog' },
-    { name: 'Uses', icon: Settings, href: '/uses' },
-    { name: 'About', icon: User, href: '#about' },
+  const staticItems = [
+    { name: 'Home', icon: Layout, href: '/', category: 'Navigation' },
+    { name: 'Projects', icon: Layout, href: '/projects', category: 'Navigation' },
+    { name: 'Blog', icon: Book, href: '/blog', category: 'Navigation' },
+    { name: 'Uses', icon: Settings, href: '/uses', category: 'Navigation' },
+    { name: 'Contact', icon: Mail, href: '/contact', category: 'Navigation' },
   ];
+
+  // When query is empty, show static links + latest 3 items from searchData
+  const quickAccessItems = [...staticItems, ...searchData.slice(0, 3)];
+
+  const allSearchableItems = [...staticItems, ...searchData];
+
+  const filteredItems = query 
+    ? allSearchableItems.filter(item => 
+        item.name.toLowerCase().includes(query.toLowerCase()) ||
+        item.category.toLowerCase().includes(query.toLowerCase())
+      )
+    : quickAccessItems;
 
   return (
     <AnimatePresence>
@@ -63,26 +89,42 @@ export const CommandPalette: React.FC = () => {
               </kbd>
             </div>
 
-            <div className="p-2">
-              <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-zinc-500">Navigation</p>
-              <div className="space-y-1">
-                {items.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors group"
-                  >
-                    <item.icon className="w-4 h-4 text-zinc-500 group-hover:text-white" />
-                    <span className="text-sm font-medium">{item.name}</span>
-                  </a>
-                ))}
-              </div>
+            <div className="p-2 max-h-[60vh] overflow-y-auto">
+              {filteredItems.length > 0 ? (
+                <>
+                  <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                    {query ? 'Results' : 'Quick Access'}
+                  </p>
+                  <div className="space-y-1">
+                    {filteredItems.map((item) => {
+                      const Icon = (item as any).icon || Search;
+                      return (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          className="flex items-center justify-between px-3 py-2.5 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors group"
+                        >
+                          <div className="flex items-center gap-3">
+                            <Icon className="w-4 h-4 text-zinc-500 group-hover:text-white" />
+                            <span className="text-sm font-medium">{item.name}</span>
+                          </div>
+                          <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest">{item.category}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <div className="py-12 text-center">
+                  <p className="text-sm text-zinc-500">No results found for "{query}"</p>
+                </div>
+              )}
             </div>
 
             <div className="px-4 py-3 bg-zinc-950/50 border-t border-zinc-800 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Command className="w-3 h-3 text-zinc-500" />
-                <span className="text-[10px] text-zinc-500">Press ENTER to select</span>
+                <span className="text-[10px] text-zinc-500">Press ENTER to select • {isMac ? '⌘' : 'Ctrl'}+K to toggle</span>
               </div>
             </div>
           </motion.div>

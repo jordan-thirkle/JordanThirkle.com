@@ -1,0 +1,73 @@
+---
+import { getCollection, render } from 'astro:content';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { EngagementDock } from '@/components/react/EngagementDock';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<MainLayout title={project.data.title} description={project.data.description} image={project.data.image}>
+  <article class="space-y-12">
+    <header class="space-y-8">
+      <div class="space-y-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
+          {project.data.title}
+        </h1>
+        <p class="text-xl text-zinc-400 max-w-2xl leading-relaxed">
+          {project.data.description}
+        </p>
+      </div>
+
+      <div class="aspect-video w-full overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900">
+        <Image 
+          src={project.data.image} 
+          alt={project.data.title}
+          width={1920}
+          height={1080}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </header>
+
+    <div class="prose prose-invert prose-zinc max-w-none prose-headings:font-bold prose-a:text-white hover:prose-a:text-zinc-300 transition-colors prose-img:rounded-2xl">
+      <Content />
+    </div>
+
+    <!-- Giscus Comments Section -->
+    <div id="comments" class="mt-24 pt-12 border-t border-zinc-900 not-prose">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white">Project Discussion</h2>
+        <p class="text-zinc-500 mt-2">Questions about the architecture or implementation? Drop a comment below.</p>
+      </div>
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="jordan-thirkle/creator-hub-comments"
+        data-repo-id="R_kgDOSLv_Ag"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOSLv_As4C7nrE"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="transparent_dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+        data-astro-rerun
+      ></script>
+    </div>
+  </article>
+
+  <EngagementDock client:load />
+</MainLayout>

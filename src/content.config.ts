@@ -1,4 +1,3 @@
-console.log("DEBUG: config.ts is executing");
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
@@ -7,11 +6,11 @@ const blog = defineCollection({
 	schema: z.object({
 		title: z.string().max(60),
 		description: z.string().max(160),
-		date: z.coerce.date(),
+		pubDate: z.coerce.date(),
 		tags: z.array(z.string()),
 		readTime: z.string(),
 		draft: z.boolean().default(false),
-		heroImage: z.string().optional(),
+		image: z.string().optional(),
 		featured: z.boolean().default(false),
 	}),
 });
@@ -26,7 +25,7 @@ const projects = defineCollection({
 		pubDate: z.coerce.date(),
 		liveUrl: z.string().url().optional(),
 		githubUrl: z.string().url().optional(),
-		heroImage: z.string(),
+		image: z.string(),
 		featured: z.boolean().default(false),
 	}),
 });

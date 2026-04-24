@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Share2, Twitter, Github, MessageCircle } from 'lucide-react';
+import { Heart, Share2, Twitter, Linkedin, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { showToast } from '@/store';
 
@@ -11,7 +11,7 @@ export const EngagementDock: React.FC = () => {
   useEffect(() => {
     // Load local state
     const liked = localStorage.getItem('hub-liked') === 'true';
-    const totalLikes = parseInt(localStorage.getItem('hub-total-likes') || '42', 10);
+    const totalLikes = parseInt(localStorage.getItem('hub-total-likes') || '0', 10);
     setHasLiked(liked);
     setLikes(liked ? totalLikes : totalLikes);
   }, []);
@@ -29,19 +29,8 @@ export const EngagementDock: React.FC = () => {
     }
   };
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Jordan Thirkle | Creator Hub',
-          url: window.location.href,
-        });
-      } catch (err) {
-        setIsShareOpen(!isShareOpen);
-      }
-    } else {
-      setIsShareOpen(!isShareOpen);
-    }
+  const handleShare = () => {
+    setIsShareOpen(!isShareOpen);
   };
 
   return (
@@ -61,6 +50,15 @@ export const EngagementDock: React.FC = () => {
 
         <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
 
+        <a 
+          href="#comments"
+          className="p-2.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
+        >
+          <MessageSquare className="w-4 h-4" />
+        </a>
+
+        <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
+
         <div className="relative">
           <button
             onClick={handleShare}
@@ -77,26 +75,36 @@ export const EngagementDock: React.FC = () => {
                 exit={{ opacity: 0, y: 10, scale: 0.9 }}
                 className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-800 rounded-2xl p-2 shadow-2xl flex flex-col gap-1 min-w-[160px]"
               >
-                <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors">
-                  <Twitter className="w-4 h-4" /> Twitter
+                <button 
+                  onClick={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    showToast('Link copied to clipboard!', 'success');
+                    setIsShareOpen(false);
+                  }}
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors w-full text-left"
+                >
+                  <Share2 className="w-4 h-4" /> Copy Link
+                </button>
+                <a 
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  onClick={() => setIsShareOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
+                >
+                  <Twitter className="w-4 h-4" /> Share on X
                 </a>
-                <a href="#" className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors">
-                  <MessageCircle className="w-4 h-4" /> Threads
+                <a 
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  onClick={() => setIsShareOpen(false)}
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
+                >
+                  <Linkedin className="w-4 h-4" /> LinkedIn
                 </a>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-
-        <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
-
-        <a
-          href="https://github.com/jordanthirkle"
-          target="_blank"
-          className="p-2.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
-        >
-          <Github className="w-4 h-4" />
-        </a>
       </div>
     </div>
   );
