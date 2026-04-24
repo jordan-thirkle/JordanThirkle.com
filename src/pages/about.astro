@@ -1,0 +1,58 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Mail, Twitter, Github } from 'lucide-react';
+
+const title = "The Story";
+const description = "Computer Science graduate, solo father, and full-stack architect building the future at the speed of AI.";
+---
+
+<MainLayout title={title} description={description}>
+  <section class="max-w-2xl mx-auto py-12">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-8">
+      Building the future in the <span class="bg-gradient-to-r from-zinc-50 to-zinc-400 bg-clip-text text-transparent">gaps of the present.</span>
+    </h1>
+
+    <div class="prose prose-invert prose-zinc max-w-none space-y-6 text-zinc-400 leading-relaxed">
+      <p>
+        I am a Computer Science graduate and a Full-Stack Architect, but most importantly, I am a 24/7 solo father to a bright 5-year-old "Assistant Architect." My journey is defined by a commitment to technical excellence and a necessity for extreme efficiency.
+      </p>
+
+      <p>
+        My technical foundation was built in the rigorous environment of a Computer Science degree, where I learned to appreciate the mathematical beauty of algorithms and the structural integrity of well-designed systems. But the real hardening happened in the real world—balancing the demands of high-level software architecture with the unpredictable reality of solo parenting.
+      </p>
+
+      <h2 class="text-xl font-bold text-white mt-12 mb-4">Engineering at the Speed of AI</h2>
+      <p>
+        I don't just "use" AI; I architect with it. In a world where traditional agencies move at a snail's pace, I've transformed myself into a one-man studio that ships at the speed of thought. By leveraging AI as a force multiplier, I'm able to handle the output of a full engineering team while maintaining a level of code quality and architectural oversight that standard workflows simply can't match.
+      </p>
+
+      <p>
+        This isn't about cutting corners; it's about eliminating the friction between an idea and its execution. It's about using the most advanced tools available to build high-performance web, app, and game ecosystems that are robust, scalable, and beautiful.
+      </p>
+
+      <h2 class="text-xl font-bold text-white mt-12 mb-4">Building in Public</h2>
+      <p>
+        Transparency is my ultimate currency. By "Building in Public" through my <a href="/devlog" class="text-white hover:underline underline-offset-4">Dev Log</a>, I'm sharing the micro-wins, the technical deep-dives, and the occasional chaotic reality of a "Dad-Dev" lifestyle. It's a verifiable audit trail of my shipping velocity and a proof of work that speaks louder than any resume.
+      </p>
+
+      <p>
+        Whether I'm refactoring a React micro-frontend or debugging a Unity game engine while my daughter naps, my focus remains the same: crafting premium digital experiences that push the boundaries of what a solo developer can accomplish.
+      </p>
+
+      <div class="pt-12 border-t border-zinc-900 mt-12">
+        <p class="text-sm font-medium text-white mb-6">Let's connect and build something extraordinary.</p>
+        <div class="flex gap-4">
+          <a href="/contact" class="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-300 hover:text-white hover:border-zinc-700 transition-all">
+            <Mail class="w-4 h-4" /> Get in Touch
+          </a>
+          <a href="https://twitter.com/jordan_thirkle" target="_blank" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-all">
+            <Twitter class="w-4 h-4" />
+          </a>
+          <a href="https://github.com/jordanthirkle" target="_blank" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-all">
+            <Github class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

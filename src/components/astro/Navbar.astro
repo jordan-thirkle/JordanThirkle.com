@@ -1,6 +1,6 @@
 ---
 const navItems = [
-  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
   { name: 'Projects', href: '/projects' },
   { name: 'Blog', href: '/blog' },
   { name: 'Dev Log', href: '/devlog' },
@@ -47,11 +47,11 @@ const currentPath = pathname.replace(/\/$/, "");
             </a>
           </li>
         ))}
-        <div class="w-px h-4 bg-zinc-800 mx-2"></div>
+        <div class="w-px h-4 bg-zinc-800 mx-2 self-center"></div>
         <li>
           <a
             href="/contact"
-            class={`text-sm font-medium transition-colors hover:text-white ${
+            class={`text-sm font-medium transition-colors hover:text-white flex items-center h-full ${
               currentPath === "/contact" || currentPath.startsWith("/contact/") ? "text-zinc-100" : "text-zinc-400"
             }`}
           >

@@ -40,6 +40,7 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
 
   const staticItems = [
     { name: 'Home', icon: Layout, href: '/', category: 'Navigation' },
+    { name: 'About', icon: Book, href: '/about', category: 'Navigation' },
     { name: 'Projects', icon: Layout, href: '/projects', category: 'Navigation' },
     { name: 'Blog', icon: Book, href: '/blog', category: 'Navigation' },
     { name: 'Dev Log', icon: Book, href: '/devlog', category: 'Navigation' },
