@@ -84,7 +84,7 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
             className="relative w-full max-w-lg bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden"
           >
             <div className="flex items-center px-4 border-b border-zinc-800">
-              <Search className="w-5 h-5 text-zinc-500" />
+              <Search className="w-5 h-5 text-zinc-400" />
               <input
                 autoFocus
                 type="text"
@@ -101,7 +101,7 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
             <div className="p-2 max-h-[60vh] overflow-y-auto">
               {filteredItems.length > 0 ? (
                 <>
-                  <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                  <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
                     {query ? 'Results' : 'Quick Access'}
                   </p>
                   <div className="space-y-1">
@@ -114,10 +114,10 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
                           className="flex items-center justify-between px-3 py-2.5 rounded-lg text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors group"
                         >
                           <div className="flex items-center gap-3">
-                            <Icon className="w-4 h-4 text-zinc-500 group-hover:text-white" />
+                            <Icon className="w-4 h-4 text-zinc-400 group-hover:text-white" />
                             <span className="text-sm font-medium">{item.name}</span>
                           </div>
-                          <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest">{item.category}</span>
+                          <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">{item.category}</span>
                         </a>
                       );
                     })}
@@ -125,15 +125,15 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
                 </>
               ) : (
                 <div className="py-12 text-center">
-                  <p className="text-sm text-zinc-500">No results found for "{query}"</p>
+                  <p className="text-sm text-zinc-400">No results found for "{query}"</p>
                 </div>
               )}
             </div>
 
             <div className="px-4 py-3 bg-zinc-950/50 border-t border-zinc-800 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Command className="w-3 h-3 text-zinc-500" />
-                <span className="text-[10px] text-zinc-500">Press ENTER to select • {isMac ? '⌘' : 'Ctrl'}+K to toggle</span>
+                <Command className="w-3 h-3 text-zinc-400" />
+                <span className="text-[10px] text-zinc-400">Press ENTER to select • {isMac ? '⌘' : 'Ctrl'}+K to toggle</span>
               </div>
             </div>
           </motion.div>

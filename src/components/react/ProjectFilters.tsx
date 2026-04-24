@@ -43,7 +43,7 @@ export const ProjectFilters: React.FC<Props> = ({ categories }) => {
             className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all border ${
               isActive 
                 ? 'bg-white text-black border-white' 
-                : 'bg-zinc-900 text-zinc-500 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
+                : 'bg-zinc-900 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-300'
             }`}
           >
             {f}

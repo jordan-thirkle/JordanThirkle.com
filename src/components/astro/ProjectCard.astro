@@ -37,7 +37,7 @@ const { project } = Astro.props;
       <a 
         href={`/projects?filter=${project.data.category.toLowerCase()}`}
         data-filter={project.data.category.toLowerCase()}
-        class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded hover:bg-zinc-700 hover:text-white transition-colors filter-link"
+        class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 bg-zinc-800 px-2 py-0.5 rounded hover:bg-zinc-700 hover:text-white transition-colors filter-link"
       >
         {project.data.category}
       </a>
@@ -56,7 +56,7 @@ const { project } = Astro.props;
         <a 
           href={`/projects?filter=${t.toLowerCase()}`}
           data-filter={t.toLowerCase()}
-          class="text-[10px] text-zinc-500 hover:text-zinc-300 transition-colors filter-link"
+          class="text-[10px] text-zinc-400 hover:text-zinc-300 transition-colors filter-link"
         >
           #{t}
         </a>

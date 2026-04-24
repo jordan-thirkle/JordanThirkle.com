@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { formatDate } from '@/utils/index';
+import { Giscus } from '@/components/react/Giscus';
 import { EngagementDock } from '@/components/react/EngagementDock';
 
 export async function getStaticPaths() {
@@ -21,7 +22,7 @@ const title = `${log.data.title} | Jordan Thirkle Dev Log`;
 <MainLayout title={title} description={log.data.title}>
   <div class="max-w-4xl mx-auto">
     <header class="mb-16 text-center">
-      <a href="/devlog" class="text-sm text-zinc-500 hover:text-white transition-colors mb-8 inline-block">← Back to Logs</a>
+      <a href="/devlog" class="text-sm text-zinc-400 hover:text-white transition-colors mb-8 inline-block">← Back to Logs</a>
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
         {log.data.title}
       </h1>
@@ -29,11 +30,11 @@ const title = `${log.data.title} | Jordan Thirkle Dev Log`;
       <!-- Quick Info Bar -->
       <div class="inline-flex flex-wrap justify-center gap-x-8 gap-y-4 p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl mx-auto">
         <div class="text-center">
-          <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Published</p>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Published</p>
           <p class="text-sm font-medium text-zinc-300">{formatDate(log.data.pubDate)}</p>
         </div>
         <div class="text-center">
-          <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mb-1">Tags</p>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Tags</p>
           <div class="flex gap-2">
             {log.data.tags.map(tag => (
               <span class="text-sm font-medium text-zinc-400">#{tag}</span>
@@ -51,25 +52,9 @@ const title = `${log.data.title} | Jordan Thirkle Dev Log`;
     <div id="comments" class="mt-24 pt-12 border-t border-zinc-900 not-prose">
       <div class="mb-8">
         <h2 class="text-2xl font-bold text-white">Log Discussion</h2>
-        <p class="text-zinc-500 mt-2">Questions or thoughts on this update?</p>
+        <p class="text-zinc-400 mt-2">Questions or thoughts on this update?</p>
       </div>
-      <script
-        src="https://giscus.app/client.js"
-        data-repo="jordan-thirkle/creator-hub-comments"
-        data-repo-id="R_kgDOSLv_Ag"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOSLv_As4C7nrE"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="transparent_dark"
-        data-lang="en"
-        crossorigin="anonymous"
-        async
-        data-astro-rerun
-      ></script>
+      <Giscus client:visible />
     </div>
   </div>
 

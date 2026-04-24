@@ -13,7 +13,7 @@ const currentPath = pathname.replace(/\/$/, "");
 
 <header class="fixed top-0 w-full z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900">
   <nav class="container mx-auto px-6 max-w-4xl h-16 flex items-center justify-between">
-    <a href="/" class="text-white font-bold tracking-tighter text-xl flex items-center gap-2 group">
+    <a href="/" class="text-white font-bold tracking-tighter text-xl flex items-center gap-2 group" aria-label="Home">
       <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-zinc-950 transition-transform group-hover:scale-110">
         J
       </div>
@@ -24,10 +24,11 @@ const currentPath = pathname.replace(/\/$/, "");
       <button 
         id="search-trigger"
         class="flex items-center gap-2 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-400 hover:text-white hover:border-zinc-700 transition-all text-sm group"
+        aria-label="Open Search"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         <span class="inline">Search</span>
-        <kbd class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-zinc-800 rounded border border-zinc-700 font-sans text-[10px] text-zinc-500 group-hover:text-zinc-300">
+        <kbd class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 bg-zinc-800 rounded border border-zinc-700 font-sans text-[10px] text-zinc-400 group-hover:text-zinc-300">
           <span id="modifier-key" class="text-xs">⌘</span>K
         </kbd>
       </button>

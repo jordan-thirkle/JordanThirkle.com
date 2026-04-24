@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import MainLayout from '@/layouts/MainLayout.astro';
 
 import { EngagementDock } from '@/components/react/EngagementDock';
+import { Giscus } from '@/components/react/Giscus';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -24,7 +25,7 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
   image={post.data.image}
 >
   <header class="max-w-4xl mx-auto mb-16 text-center">
-    <div class="flex items-center justify-center gap-3 text-sm text-zinc-500 mb-4 font-medium">
+    <div class="flex items-center justify-center gap-3 text-sm text-zinc-400 mb-4 font-medium">
       <time datetime={post.data.pubDate.toISOString()}>
         {post.data.pubDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
       </time>
@@ -38,7 +39,7 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
       {post.data.tags.map((tag) => (
         <a 
           href={`/blog/tags/${tag.toLowerCase()}`}
-          class="text-zinc-500 hover:text-zinc-300 transition-colors font-medium"
+          class="text-zinc-400 hover:text-zinc-300 transition-colors font-medium"
         >
           #{tag}
         </a>
@@ -51,13 +52,13 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
     {toc.length > 3 && (
       <aside class="hidden lg:block w-64 shrink-0">
         <div class="sticky top-32 space-y-4">
-          <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-500">In this post</h2>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-400">In this post</h2>
           <nav class="flex flex-col gap-3">
             {toc.map((h) => (
               <a 
                 href={`#${h.slug}`}
                 class={`text-sm transition-colors hover:text-white ${
-                  h.depth === 2 ? 'text-zinc-400 font-medium' : 'text-zinc-500 pl-4'
+                  h.depth === 2 ? 'text-zinc-300 font-medium' : 'text-zinc-400 pl-4'
                 }`}
               >
                 {h.text}
@@ -75,25 +76,9 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
       <div id="comments" class="mt-24 pt-12 border-t border-zinc-900 not-prose">
         <div class="mb-8">
           <h2 class="text-2xl font-bold text-white">Discussions</h2>
-          <p class="text-zinc-500 mt-2">Be the first to share your thoughts or ask a question.</p>
+          <p class="text-zinc-400 mt-2">Be the first to share your thoughts or ask a question.</p>
         </div>
-        <script
-          src="https://giscus.app/client.js"
-          data-repo="jordan-thirkle/creator-hub-comments"
-          data-repo-id="R_kgDOSLv_Ag"
-          data-category="Announcements"
-          data-category-id="DIC_kwDOSLv_As4C7nrE"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="top"
-          data-theme="transparent_dark"
-          data-lang="en"
-          crossorigin="anonymous"
-          async
-          data-astro-rerun
-        ></script>
+        <Giscus client:visible />
       </div>
     </article>
   </div>
