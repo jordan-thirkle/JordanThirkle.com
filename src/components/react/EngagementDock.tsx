@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Share2, Twitter, Github, Linkedin, MessageCircle } from 'lucide-react';
+import { Heart, Share2, Twitter, Github, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { showToast } from '@/store';
 

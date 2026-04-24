@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
 import { ToastProvider } from '@/components/react/ToastProvider';
 import { CommandPalette } from '@/components/react/CommandPalette';
@@ -60,7 +60,7 @@ const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${tit
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
 
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body class="bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col min-h-screen">
 		<ToastProvider client:load />

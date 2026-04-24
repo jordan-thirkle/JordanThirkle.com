@@ -65,7 +65,7 @@ const latestPosts = (await getCollection('blog'))
 
     <div class="space-y-8">
       {latestPosts.map((post) => (
-        <a href={`/blog/${post.slug}`} class="group flex items-start justify-between">
+        <a href={`/blog/${post.id}`} class="group flex items-start justify-between">
           <div>
             <h3 class="text-xl font-bold text-zinc-300 group-hover:text-white transition-colors mb-1">
               {post.data.title}
