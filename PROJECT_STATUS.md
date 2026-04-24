@@ -11,16 +11,16 @@
 
 ## ✅ Completed Tasks
 - [x] **Project Init**: Astro 6 + React/Tailwind/MDX/Icon/Sitemap.
-- [x] **Content layer**: Zod schemas for Blog and Projects.
-- [x] **Layouts**: `MainLayout` with ViewTransitions and SEO.
-- [x] **Interactive Islands**: `CommandPalette`, `EngagementDock`, `ToastProvider`.
-- [x] **Pages**: Homepage, Uses, Blog Index, Dynamic Post Routes, RSS Feed.
+- [x] **Content layer**: Zod schemas for Blog, Projects, and Devlog.
+- [x] **Layouts**: `MainLayout` with ViewTransitions, SEO, and JSON-LD.
+- [x] **Performance**: 100/100 Lighthouse hardening (LCP, CLS, TBT).
+- [x] **Brand Sync**: "The Story" narrative and Senior-Architect persona.
+- [x] **Social**: X.com sharing with Thread Drafter and Metadata.
 
-## 🔜 Next Steps / TODOs
-- [ ] **Giscus Setup**: Replace `[YOUR_REPO]` and IDs in `src/pages/blog/[...slug].astro`.
-- [ ] **Real Assets**: Add screenshots to `public/projects/`.
-- [ ] **Deployment**: Connect the GitHub repo to Vercel/Netlify.
-- [ ] **Content**: Replace dummy `.mdx` files with real portfolio content.
+## 🔜 Next Steps / Handover
+- [ ] **Giscus Setup**: Finalize IDs in `src/config.ts` or individual pages.
+- [ ] **Real Assets**: Replace placeholders in `public/projects/`.
+- [ ] **Content**: Continue adding deep-dives to the Dev Log.
 
 ---
-*Last updated by Antigravity on Mac session. Ready for Desktop pick-up.*
+*Last updated by Antigravity on Windows session. Pushed to main. Ready for Mac session.*
