@@ -1,0 +1,89 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '@/styles/global.css';
+import { ToastProvider } from '@/components/react/ToastProvider';
+import { CommandPalette } from '@/components/react/CommandPalette';
+import { EngagementDock } from '@/components/react/EngagementDock';
+import Navbar from '@/components/astro/Navbar.astro';
+import Footer from '@/components/astro/Footer.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonicalURL?: URL;
+}
+
+const {
+	title = 'Jordan Thirkle | Creator Hub',
+	description = 'A highly optimized, minimalist developer portfolio and blog.',
+	image = '/og-image.png',
+	canonicalURL = new URL(Astro.url.pathname, Astro.site),
+} = Astro.props;
+
+const formattedTitle = title === 'Jordan Thirkle | Creator Hub' ? title : `${title} | Jordan Thirkle`;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<!-- Global Metadata -->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+
+		<!-- Primary Meta Tags -->
+		<title>{formattedTitle}</title>
+		<meta name="title" content={formattedTitle} />
+		<meta name="description" content={description} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={formattedTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, Astro.url)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={formattedTitle} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+
+		<ViewTransitions />
+	</head>
+	<body class="bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col min-h-screen">
+		<ToastProvider client:load />
+		<CommandPalette client:load />
+		
+		<Navbar />
+		
+		<main class="flex-grow container mx-auto px-6 max-w-4xl py-24">
+			<slot />
+		</main>
+
+		<Footer />
+		
+		<EngagementDock client:idle />
+
+		<style is:global>
+			:root {
+				--accent: 255, 255, 255;
+			}
+			
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Outfit', sans-serif;
+			}
+		</style>
+	</body>
+</html>

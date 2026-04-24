@@ -1,0 +1,18 @@
+---
+const today = new Date();
+---
+
+<footer class="mt-auto border-t border-zinc-900 bg-zinc-950/50 py-12">
+  <div class="container mx-auto px-6 max-w-4xl flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex flex-col items-center md:items-start transition-opacity hover:opacity-100 opacity-60">
+      <p class="text-sm font-medium text-white">© {today.getFullYear()} Jordan Thirkle</p>
+      <p class="text-xs text-zinc-500 mt-1">Built with Astro & React Islands.</p>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <a href="/rss.xml" class="text-xs font-medium text-zinc-500 hover:text-white transition-colors">RSS Feed</a>
+      <a href="https://github.com/jordanthirkle" class="text-xs font-medium text-zinc-500 hover:text-white transition-colors">GitHub</a>
+      <a href="https://twitter.com/jordanthirkle" class="text-xs font-medium text-zinc-500 hover:text-white transition-colors">Twitter</a>
+    </div>
+  </div>
+</footer>

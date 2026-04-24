@@ -1,0 +1,38 @@
+---
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Uses', href: '/uses' },
+];
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, "");
+---
+
+<header class="fixed top-0 w-full z-40 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-900">
+  <nav class="container mx-auto px-6 max-w-4xl h-16 flex items-center justify-between">
+    <a href="/" class="text-white font-bold tracking-tighter text-xl flex items-center gap-2 group">
+      <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-zinc-950 transition-transform group-hover:scale-110">
+        J
+      </div>
+      <span class="hidden sm:block">Jordan Thirkle</span>
+    </a>
+
+    <ul class="flex items-center gap-8">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class={`text-sm font-medium transition-colors hover:text-white ${
+              currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href))
+                ? "text-white"
+                : "text-zinc-500"
+            }`}
+          >
+            {item.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>

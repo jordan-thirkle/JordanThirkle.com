@@ -1,0 +1,26 @@
+---
+title: "The Art of Minimalist Web Architecture"
+description: "Why I chose Astro 4+ and React Islands for the new Creator Hub."
+date: 2024-04-24
+tags: ["Architecture", "Astro", "Performance"]
+readTime: "5 min read"
+draft: false
+featured: true
+---
+
+# The Art of Minimalist Web Architecture
+
+Welcome to the inaugural post on the new **Creator Hub**. Building a portfolio today often involves over-engineering with heavy frameworks that hydrate the entire page. 
+
+## The Zero-JS Baseline
+
+By using Astro, we ensure that the baseline for every page is exactly zero kilobytes of Javascript. We only ship JS when interaction is strictly necessary—like the Command Palette or the Engagement Dock.
+
+```tsx
+// This is a React Island in my Astro site
+const Island = () => {
+    return <button onClick={() => alert('Hydrated!')}>Click Me</button>
+}
+```
+
+Stay tuned for more deep dives into my stack.
