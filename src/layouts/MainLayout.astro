@@ -26,6 +26,7 @@ const formattedTitle = title === 'Jordan Thirkle | Full-Stack Developer & Archit
 // Fetch search data
 const blogs = await getCollection('blog');
 const projects = await getCollection('projects');
+const devlogs = await getCollection('devlog');
 
 const searchData = [
   ...blogs.map(post => ({ 
@@ -41,6 +42,13 @@ const searchData = [
     category: 'Project',
     description: proj.data.description,
     tags: proj.data.tech 
+  })),
+  ...devlogs.map(log => ({ 
+    name: log.data.title, 
+    href: `/devlog/${log.id}`, 
+    category: 'Dev Log',
+    description: log.data.description,
+    tags: log.data.tags 
   })),
 ];
 ---
