@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { formatDate } from '@/utils/index';
+
+const logs = (await getCollection('devlog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const title = "Dev Log | Jordan Thirkle";
+const description = "Short, raw updates on what I'm building, learning, and shipping.";
+---
+
+<MainLayout title={title} description={description}>
+  <div class="space-y-12">
+    <header class="space-y-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">Dev Log</h1>
+      <p class="text-zinc-400 text-lg max-w-2xl">
+        Raw, unfiltered updates from the build. Engineering in public, day by day.
+      </p>
+    </header>
+
+    <div class="space-y-16">
+      {logs.map((log) => (
+        <article class="relative flex flex-col items-start gap-4">
+          <time class="text-xs font-bold uppercase tracking-widest text-zinc-500" datetime={log.data.pubDate.toISOString()}>
+            {formatDate(log.data.pubDate)}
+          </time>
+          <h2 class="text-2xl font-bold text-white hover:text-zinc-400 transition-colors">
+            <a href={`/devlog/${log.id}`}>
+              {log.data.title}
+            </a>
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            {log.data.tags.map(tag => (
+              <span class="text-[10px] text-zinc-600 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800">#{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</MainLayout>

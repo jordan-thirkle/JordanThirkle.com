@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from 'astro:content';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { formatDate } from '@/utils/index';
+
+export async function getStaticPaths() {
+  const logs = await getCollection('devlog');
+  return logs.map((log) => ({
+    params: { slug: log.id },
+    props: { log },
+  }));
+}
+
+const { log } = Astro.props;
+const { Content } = await render(log);
+
+const title = `${log.data.title} | Jordan Thirkle Dev Log`;
+---
+
+<MainLayout title={title} description={log.data.title}>
+  <div class="max-w-2xl mx-auto">
+    <header class="mb-12">
+      <a href="/devlog" class="text-sm text-zinc-500 hover:text-white transition-colors mb-8 inline-block">← Back to Logs</a>
+      <div class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">
+        <time datetime={log.data.pubDate.toISOString()}>
+          {formatDate(log.data.pubDate)}
+        </time>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
+        {log.data.title}
+      </h1>
+    </header>
+
+    <div class="prose prose-zinc prose-invert max-w-none">
+      <Content />
+    </div>
+
+    <!-- Giscus Comments Section -->
+    <div id="comments" class="mt-24 pt-12 border-t border-zinc-900 not-prose">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white">Log Discussion</h2>
+        <p class="text-zinc-500 mt-2">Questions or thoughts on this update?</p>
+      </div>
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="jordan-thirkle/creator-hub-comments"
+        data-repo-id="R_kgDOSLv_Ag"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOSLv_As4C7nrE"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="transparent_dark"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+        data-astro-rerun
+      ></script>
+    </div>
+  </div>
+</MainLayout>
