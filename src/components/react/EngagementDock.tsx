@@ -3,13 +3,17 @@ import { Heart, Share2, Twitter, Linkedin, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { showToast } from '@/store';
 
-export const EngagementDock: React.FC = () => {
+interface Props {
+  title?: string;
+  url?: string;
+}
+
+export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
   const [likes, setLikes] = useState(0);
   const [hasLiked, setHasLiked] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
   useEffect(() => {
-    // Load local state
     const liked = localStorage.getItem('hub-liked') === 'true';
     const totalLikes = parseInt(localStorage.getItem('hub-total-likes') || '0', 10);
     setHasLiked(liked);
@@ -31,6 +35,24 @@ export const EngagementDock: React.FC = () => {
 
   const handleShare = () => {
     setIsShareOpen(!isShareOpen);
+  };
+
+  const tweetText = `Just posted a new Dev Log: ${title} 🏗️ #BuildInPublic #AI #Solopreneur`;
+  const [currentUrl, setCurrentUrl] = useState(url);
+
+  useEffect(() => {
+    if (!url && typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href);
+    }
+  }, [url]);
+
+  const xShareUrl = `https://x.com/intent/post?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(currentUrl || '')}`;
+
+  const handleCopyThread = () => {
+    const threadText = `${title}\n\nJust posted a new update to the Dev Log. Check out the full technical breakdown here:\n\n${currentUrl}\n\n🧵 (1/1)`;
+    navigator.clipboard.writeText(threadText);
+    showToast('Formatted for X thread!', 'success');
+    setIsShareOpen(false);
   };
 
   return (
@@ -73,12 +95,12 @@ export const EngagementDock: React.FC = () => {
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-800 rounded-2xl p-2 shadow-2xl flex flex-col gap-1 min-w-[160px]"
+                className="absolute bottom-full mb-4 left-1/2 -translate-x-1/2 bg-zinc-900 border border-zinc-800 rounded-2xl p-2 shadow-2xl flex flex-col gap-1 min-w-[200px]"
               >
                 <button 
                   onClick={() => {
-                    navigator.clipboard.writeText(window.location.href);
-                    showToast('Link copied to clipboard!', 'success');
+                    navigator.clipboard.writeText(currentUrl || '');
+                    showToast('Link copied!', 'success');
                     setIsShareOpen(false);
                   }}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors w-full text-left"
@@ -86,15 +108,22 @@ export const EngagementDock: React.FC = () => {
                   <Share2 className="w-4 h-4" /> Copy Link
                 </button>
                 <a 
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`}
+                  href={xShareUrl}
                   target="_blank"
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
-                  <Twitter className="w-4 h-4" /> Share on X
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                  Share on X
                 </a>
+                <button 
+                  onClick={handleCopyThread}
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors w-full text-left"
+                >
+                  <MessageSquare className="w-4 h-4" /> Copy for X Thread
+                </button>
                 <a 
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl || '')}`}
                   target="_blank"
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"

@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import MainLayout from '@/layouts/MainLayout.astro';
 import { formatDate } from '@/utils/index';
+import { EngagementDock } from '@/components/react/EngagementDock';
 
 export async function getStaticPaths() {
   const logs = await getCollection('devlog');
@@ -60,4 +61,6 @@ const title = `${log.data.title} | Jordan Thirkle Dev Log`;
       ></script>
     </div>
   </div>
+
+  <EngagementDock client:load title={log.data.title} url={Astro.url.toString()} />
 </MainLayout>
