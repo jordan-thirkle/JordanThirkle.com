@@ -18,12 +18,12 @@ const { Content } = await render(project);
 
 <MainLayout title={project.data.title} description={project.data.description} image={project.data.image}>
   <article class="space-y-12">
-    <header class="space-y-8">
+    <header class="space-y-8 text-center">
       <div class="space-y-4">
         <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight leading-tight">
           {project.data.title}
         </h1>
-        <p class="text-xl text-zinc-400 max-w-2xl leading-relaxed">
+        <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
           {project.data.description}
         </p>
       </div>
