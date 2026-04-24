@@ -11,9 +11,10 @@ interface Props {
     };
     id: string;
   };
+  eager?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, eager = false } = Astro.props;
 ---
 
 <div 
@@ -28,6 +29,8 @@ const { project } = Astro.props;
       alt={project.data.title}
       width={1280}
       height={720}
+      loading={eager ? "eager" : "lazy"}
+      fetchpriority={eager ? "high" : "low"}
       class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-60 group-hover:opacity-100"
     />
   </div>

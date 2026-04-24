@@ -39,11 +39,11 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
   }, []);
 
   const staticItems = [
-    { name: 'Home', icon: Layout, href: '/', category: 'Navigation' },
-    { name: 'About', icon: Book, href: '/about', category: 'Navigation' },
+    { name: 'The Story', icon: Book, href: '/about', category: 'Navigation' },
+    { name: 'Dev Log', icon: Book, href: '/devlog', category: 'Navigation' },
     { name: 'Projects', icon: Layout, href: '/projects', category: 'Navigation' },
     { name: 'Blog', icon: Book, href: '/blog', category: 'Navigation' },
-    { name: 'Dev Log', icon: Book, href: '/devlog', category: 'Navigation' },
+    { name: 'Home', icon: Layout, href: '/', category: 'Navigation' },
     { name: 'Uses', icon: Settings, href: '/uses', category: 'Navigation' },
     { name: 'Contact', icon: Mail, href: '/contact', category: 'Navigation' },
   ];

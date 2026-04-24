@@ -109,7 +109,7 @@ const searchData = [
 	</head>
 	<body class="bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col min-h-screen">
 		<ToastProvider client:load />
-		<CommandPalette client:load searchData={searchData} />
+		<CommandPalette client:idle searchData={searchData} />
 		
 		<Navbar />
 		
@@ -124,8 +124,12 @@ const searchData = [
 				--accent: 255, 255, 255;
 			}
 			
+			body {
+				font-family: 'Inter', 'Inter Fallback', sans-serif;
+			}
+			
 			h1, h2, h3, h4, h5, h6 {
-				font-family: 'Outfit', sans-serif;
+				font-family: 'Outfit', 'Outfit Fallback', sans-serif;
 			}
 		</style>
 	</body>

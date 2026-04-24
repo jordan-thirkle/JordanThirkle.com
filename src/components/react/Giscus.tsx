@@ -25,5 +25,5 @@ export const Giscus: React.FC = () => {
     }
   }, []);
 
-  return <div ref={ref} id="giscus-container" />;
+  return <div ref={ref} id="giscus-container" className="min-h-[400px]" />;
 };

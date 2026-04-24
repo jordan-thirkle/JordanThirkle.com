@@ -9,7 +9,26 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold text-white;
+    text-wrap: balance;
   }
+}
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  size-adjust: 107%;
+}
+
+@font-face {
+  font-family: 'Outfit Fallback';
+  src: local('Arial');
+  ascent-override: 100%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
 }
 
 /* Custom scrollbar for minimalist look */

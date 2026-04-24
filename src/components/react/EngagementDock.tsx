@@ -37,7 +37,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
     setIsShareOpen(!isShareOpen);
   };
 
-  const tweetText = `Just posted a new Dev Log: ${title} 🏗️ #BuildInPublic #AI #Solopreneur`;
+  const tweetText = `Just posted: ${title} 🏗️\n\nBy @jordan_Thirkle #BuildInPublic #AI #Engineering`;
   const [currentUrl, setCurrentUrl] = useState(url);
 
   useEffect(() => {
@@ -49,9 +49,22 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
   const xShareUrl = `https://x.com/intent/post?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(currentUrl || '')}`;
 
   const handleCopyThread = () => {
-    const threadText = `${title}\n\nJust posted a new update to the Dev Log. Check out the full technical breakdown here:\n\n${currentUrl}\n\n🧵 (1/1)`;
-    navigator.clipboard.writeText(threadText);
-    showToast('Formatted for X thread!', 'success');
+    const header = `${title} 🧵\n\n`;
+    const body = `I just published a new update on the Hub. Here is the technical breakdown:\n\n${currentUrl}\n\n`;
+    const footer = `@jordan_Thirkle #BuildInPublic`;
+    
+    const fullText = `${header}${body}${footer}`;
+    
+    // Simple splitting logic if it exceeds 280 (though for now we just format it nicely)
+    if (fullText.length > 280) {
+      const part1 = `${header}I just published a new update on the Hub. (1/2)\n\n${currentUrl}`;
+      const part2 = `The full technical breakdown is live. Check it out to see the progress. (2/2)\n\n@jordan_Thirkle #BuildInPublic`;
+      navigator.clipboard.writeText(`${part1}\n\n---\n\n${part2}`);
+      showToast('Thread split & copied!', 'success');
+    } else {
+      navigator.clipboard.writeText(fullText);
+      showToast('Formatted for X!', 'success');
+    }
     setIsShareOpen(false);
   };
 
@@ -60,6 +73,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
       <div className="flex items-center gap-2 p-2 bg-zinc-900/80 backdrop-blur-md border border-zinc-800 rounded-full shadow-2xl">
         <button
           onClick={handleLike}
+          aria-label={hasLiked ? "Unlike" : "Like"}
           className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${
             hasLiked 
             ? 'bg-rose-500/10 text-rose-500' 
@@ -74,6 +88,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
 
         <a 
           href="#comments"
+          aria-label="Scroll to comments"
           className="p-2.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
         >
           <MessageSquare className="w-4 h-4" />
@@ -84,6 +99,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
         <div className="relative">
           <button
             onClick={handleShare}
+            aria-label="Share post"
             className="p-2.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
           >
             <Share2 className="w-4 h-4" />

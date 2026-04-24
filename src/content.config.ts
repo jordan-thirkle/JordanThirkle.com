@@ -37,6 +37,7 @@ const devlog = defineCollection({
 	loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "src/data/devlog" }),
 	schema: z.object({
 		title: z.string(),
+		description: z.string().max(160),
 		pubDate: z.coerce.date(),
 		tags: z.array(z.string()).default([]),
 	}),

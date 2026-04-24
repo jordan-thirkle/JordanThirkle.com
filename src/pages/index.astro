@@ -57,8 +57,8 @@ const latestLogs = (await getCollection('devlog'))
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {featuredProjects.map((project) => (
-        <ProjectCard project={project} />
+      {featuredProjects.map((project, index) => (
+        <ProjectCard project={project} eager={index < 2} />
       ))}
     </div>
   </section>
@@ -112,7 +112,7 @@ const latestLogs = (await getCollection('devlog'))
               {post.data.readTime}
             </p>
           </div>
-          <span class="text-zinc-500 group-hover:text-zinc-400 transition-transform group-hover:translate-x-1">→</span>
+          <span class="text-zinc-400 group-hover:text-zinc-400 transition-transform group-hover:translate-x-1">→</span>
         </a>
       ))}
     </div>
