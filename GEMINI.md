@@ -1,0 +1,31 @@
+# GEMINI.md — Project Intelligence & Context
+
+**Role**: This is the "True North" for Gemini. Read this file before every session to understand the current architectural state, recent sprints, and technical debt.
+
+🏗️ **Project Architecture**
+- **Framework**: Astro 6 (Bleeding Edge) + React Islands
+- **Styling**: Tailwind CSS + Fluid Typography (clamp)
+- **Infrastructure**: Vercel + Astro Fonts API + Satori OG Pipeline
+- **Authority**: "Architect-Dad" (Solo Parent Efficiency x CS Degree)
+
+🎯 **Current Sprint**: Phase 2 Completion / Pre-Deployment Hardening
+- **Status**: Hardening / Feature Development
+- **Next Milestone**: Vercel Deployment (April 25, 2026)
+
+🧠 **Architectural Decisions (ADR)**
+- **2026-04-25**: Migrated to Astro 6 for Rust-based build performance.
+- **2026-04-25**: Implemented Tiered Crawler Strategy in robots.txt for GEO.
+- **2026-04-25**: Centered UI headers for "Symmetrical Authority" branding.
+- **2026-04-25**: Implemented automated Satori OG image pipeline for dynamic social previews.
+
+📜 **Commit Intelligence (Last 10 Updates)**
+<!-- AUTOMATED_SECTION_START -->
+- **2026-04-25**: feat: implement Phase 2 Technical Architecture & Audit Resolution (9f3a2c)
+- **2026-04-25**: chore: enhance blog readability with GEO-compliant TL;DR summaries (7d2b1a)
+- **2026-04-25**: fix: refactor Navbar with mobile-friendly drawer & thumb-reachability (4c8e5d)
+<!-- AUTOMATED_SECTION_END -->
+
+🛠️ **Global Context Keys**
+- **Protocol**: Atomic Commits + Conventional Commits.
+- **Tech Debt**: Replace placeholder images in `public/projects/`.
+- **AI Persona**: Gemini operates as a Senior Architect Partner.

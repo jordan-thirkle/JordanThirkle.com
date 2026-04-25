@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   brand: "Engineering at the speed of AI.",
   currentlyBuilding: "Neon Forge", // Updated to Neon Forge as per user request
   socials: {
-    twitter: "@jordan_thirkle",
+    x: "@jordan_thirkle",
     github: "jordan-thirkle",
     linkedin: "jordanthirkle",
   }

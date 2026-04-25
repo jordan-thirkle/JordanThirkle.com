@@ -22,7 +22,7 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
 <MainLayout 
   title={post.data.title} 
   description={post.data.description}
-  image={post.data.image}
+  image={`/og/blog/${post.id}.png`}
 >
   <header class="max-w-4xl mx-auto mb-16 text-center">
     <div class="flex items-center justify-center gap-3 text-sm text-zinc-400 mb-4 font-medium">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Share2, Twitter, Linkedin, MessageSquare } from 'lucide-react';
+import { Heart, Share2, Linkedin, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { showToast } from '@/store';
 
@@ -55,11 +55,11 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
     
     // Create a series of "tweets"
     const tweets = [
-      `${header}${intro}(1/2)`,
-      `Check out the full post for the architectural deep-dive and micro-wins from this sprint. (2/2)\n\n${footer}`
+      `${header}${intro}🚀 (1/X)`,
+      `Check out the full post for the architectural deep-dive and micro-wins from this sprint. 🛠️\n\n${currentUrl}\n\n${footer} (2/X)`
     ];
     
-    navigator.clipboard.writeText(tweets.join('\n\n---\n\n'));
+    navigator.clipboard.writeText(tweets.join('\n\n───\n\n'));
     showToast('Thread drafted & copied!', 'success');
     setIsShareOpen(false);
   };

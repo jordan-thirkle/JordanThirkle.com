@@ -17,7 +17,7 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 ---
 
-<MainLayout title={project.data.title} description={project.data.description} image={project.data.image}>
+<MainLayout title={project.data.title} description={project.data.description} image={`/og/projects/${project.id}.png`}>
   <article class="space-y-12">
     <header class="space-y-8 text-center">
       <div class="space-y-4">

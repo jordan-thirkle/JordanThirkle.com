@@ -27,4 +27,13 @@ export default defineConfig({
     sitemap(),
   ],
   prefetch: true,
+  experimental: {
+    rustCompiler: true,
+  },
+  fonts: {
+    google: {
+      families: ['Inter', 'Outfit'],
+      display: 'swap',
+    },
+  },
 });

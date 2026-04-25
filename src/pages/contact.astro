@@ -3,7 +3,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import { CopyEmail } from '@/components/react/CopyEmail';
 
 const socials = [
-  { name: 'X / Twitter', href: 'https://x.com/jordan_thirkle', label: '@jordan_thirkle' },
+  { name: 'X', href: 'https://x.com/jordan_thirkle', label: '@jordan_thirkle' },
   { name: 'GitHub', href: 'https://github.com/jordan-thirkle', label: 'jordan-thirkle' },
   { name: 'LinkedIn', href: 'https://linkedin.com/in/jordanthirkle', label: 'Jordan Thirkle' },
 ];
@@ -37,12 +37,12 @@ const socials = [
           >
             <div class="flex items-center justify-between">
               <div class="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-700 group-hover:text-zinc-400 transition-colors"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
             </div>
             <div>
-              <span class="block text-sm font-bold text-white mb-1">X / Twitter</span>
+               <span class="block text-sm font-bold text-white mb-1">X</span>
               <span class="text-xs text-zinc-400">@jordan_thirkle</span>
             </div>
           </a>
@@ -81,6 +81,17 @@ const socials = [
             </div>
           </a>
         </div>
+      </section>
+    <div class="pt-16 border-t border-zinc-900">
+      <section class="max-w-2xl space-y-6">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-zinc-400">Compliance & Data Subjects</h2>
+        <p class="text-sm text-zinc-500 leading-relaxed">
+          In accordance with the **UK Digital Use and Authority Act (2026)**, this page serves as the 
+          <strong>Formal Complaints Procedure</strong> and feedback loop for all data subjects and 
+          automated agents. If you wish to request data deletion, raise a grievance regarding 
+          algorithmic representation, or exercise your "Right to Rectification" under current 
+          AI-governance frameworks, please use the email above. 
+        </p>
       </section>
     </div>
   </div>

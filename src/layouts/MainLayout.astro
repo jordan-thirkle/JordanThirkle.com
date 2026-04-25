@@ -4,6 +4,7 @@ import '@/styles/global.css';
 import { ToastProvider } from '@/components/react/ToastProvider';
 import { CommandPalette } from '@/components/react/CommandPalette';
 import Navbar from '@/components/astro/Navbar.astro';
+import BaseHead from '@/components/astro/BaseHead.astro';
 import Footer from '@/components/astro/Footer.astro';
 import { getCollection } from 'astro:content';
 
@@ -56,87 +57,8 @@ const searchData = [
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
-		<!-- Global Metadata -->
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="alternate" type="application/rss+xml" title="Jordan Thirkle | Blog" href="/rss.xml" />
-
-		<!-- Canonical URL -->
-		<link rel="canonical" href={canonicalURL} />
-
-		<!-- Primary Meta Tags -->
-		<title>{formattedTitle}</title>
-		<meta name="title" content={formattedTitle} />
-		<meta name="description" content={description} />
-
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={formattedTitle} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url)} />
-
-		<!-- X / Twitter -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={Astro.url} />
-		<meta name="twitter:title" content={formattedTitle} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={new URL(image, Astro.url)} />
-		<meta name="twitter:site" content="@jordan_thirkle" />
-		<meta name="twitter:creator" content="@jordan_thirkle" />
-
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link 
-			rel="preload" 
-			as="style" 
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
-		/>
-		<link 
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" 
-			rel="stylesheet" 
-			media="print" 
-			onload="this.media='all'"
-		/>
-		<noscript>
-			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
-		</noscript>
-
+		<BaseHead {title} {description} {image} {canonicalURL} />
 		<ClientRouter />
-
-		<!-- JSON-LD -->
-		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "Person",
-				"name": "Jordan Thirkle",
-				"url": "https://jordanthirkle.com",
-				"jobTitle": "Full-Stack Architect",
-				"description": "Senior Full-Stack Developer specializing in high-performance web applications, minimalist architecture, and product engineering.",
-				"sameAs": [
-					"https://twitter.com/jordan_thirkle",
-					"https://github.com/jordan-thirkle",
-					"https://linkedin.com/in/jordanthirkle"
-				]
-			}
-		</script>
-		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "SoftwareSourceCode",
-				"name": "Jordan Thirkle Portfolio (Creator Hub)",
-				"description": "Minimalist, high-performance portfolio built with Astro and React.",
-				"codeRepository": "https://github.com/jordan-thirkle/creator-hub",
-				"programmingLanguage": ["TypeScript", "Astro", "React"],
-				"author": {
-					"@type": "Person",
-					"name": "Jordan Thirkle"
-				}
-			}
-		</script>
 	</head>
 	<body class="bg-zinc-950 text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col min-h-screen">
 		<ToastProvider client:load />
@@ -144,7 +66,7 @@ const searchData = [
 		
 		<Navbar />
 		
-		<main class="flex-grow container mx-auto px-6 max-w-4xl py-24">
+		<main class="flex-grow container mx-auto px-6 max-w-[1440px] py-24">
 			<slot />
 		</main>
 
