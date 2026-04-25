@@ -16,11 +16,12 @@
 - [x] **Performance**: 100/100 Lighthouse hardening (LCP, CLS, TBT).
 - [x] **Brand Sync**: "The Story" narrative and Senior-Architect persona.
 - [x] **Social**: X.com sharing with Thread Drafter and Metadata.
+- [x] **Environment**: Refactored Giscus for environment variable support.
+- [x] **Content**: Added Day 3 Dev Log (Desktop Resumption).
 
 ## 🔜 Next Steps / Handover
-- [ ] **Giscus Setup**: Finalize IDs in `src/config.ts` or individual pages.
 - [ ] **Real Assets**: Replace placeholders in `public/projects/`.
-- [ ] **Content**: Continue adding deep-dives to the Dev Log.
+- [ ] **Giscus**: Verify IDs in production deployment.
 
 ---
-*Last updated by Antigravity on Windows session. Pushed to main. Ready for Mac session.*
+*Last updated by Antigravity on Desktop session (Windows). Pushed to main. Ready for final launch.*

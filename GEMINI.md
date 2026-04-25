@@ -22,6 +22,7 @@
 
 📜 **Commit Intelligence (Last 10 Updates)**
 <!-- AUTOMATED_SECTION_START -->
+- **2026-04-25**: feat(content): add Day 3 devlog and refactor Giscus for environment variables (7d87f6c)
 - **2026-04-25**: feat: implement visual hardening, project cleanup, and devlog timeline redesign (0dd6487)
 - **2026-04-25**: feat: finalize OG image pipeline with local font hardening and Astro 6 build clearance (9a164fe)
 - **2026-04-25**: chore: checkpoint before final build fixes (8131873)
