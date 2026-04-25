@@ -7,6 +7,7 @@ const blog = defineCollection({
 		title: z.string().max(60),
 		description: z.string().max(160),
 		pubDate: z.coerce.date(),
+		category: z.enum(['AI', 'Web Development', 'Systems', 'Design', 'Productivity']).default('Web Development'),
 		tags: z.array(z.string()),
 		readTime: z.string(),
 		draft: z.boolean().default(false),
@@ -20,7 +21,7 @@ const projects = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		category: z.enum(['Games', 'SaaS', 'Open Source', 'Tools']),
+		category: z.enum(['Websites', 'Mobile Apps', 'SaaS', 'Open Source', 'Tools', 'Infrastructure']),
 		tech: z.array(z.string()),
 		pubDate: z.coerce.date(),
 		timeline: z.string().optional(),

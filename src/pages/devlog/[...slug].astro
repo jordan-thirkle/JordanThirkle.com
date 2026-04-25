@@ -21,24 +21,39 @@ const title = `${log.data.title} | Jordan Thirkle Dev Log`;
 
 <MainLayout title={title} description={log.data.title}>
   <div class="max-w-4xl mx-auto">
-    <header class="mb-16 text-center">
-      <a href="/devlog" class="text-sm text-zinc-400 hover:text-white transition-colors mb-8 inline-block">← Back to Logs</a>
-      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
-        {log.data.title}
-      </h1>
+    <header class="mb-20">
+      <a href="/devlog" class="text-[10px] font-bold text-zinc-500 hover:text-white transition-colors mb-12 inline-block uppercase tracking-[0.2em]">← Back to Logs</a>
+      
+      <div class="space-y-8">
+        <h1 class="text-4xl md:text-7xl font-bold tracking-tighter text-white leading-tight">
+          {log.data.title}
+        </h1>
 
-      <!-- Quick Info Bar -->
-      <div class="inline-flex flex-wrap justify-center gap-x-8 gap-y-4 p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl mx-auto">
-        <div class="text-center">
-          <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Published</p>
-          <p class="text-sm font-medium text-zinc-300">{formatDate(log.data.pubDate)}</p>
-        </div>
-        <div class="text-center">
-          <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Tags</p>
-          <div class="flex gap-2">
-            {log.data.tags.map(tag => (
-              <span class="text-sm font-medium text-zinc-400">#{tag}</span>
-            ))}
+        <div class="flex flex-wrap items-center gap-6 py-6 border-y border-zinc-900">
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Entry Date</span>
+            <span class="text-sm font-medium text-zinc-300">{formatDate(log.data.pubDate)}</span>
+          </div>
+          
+          <div class="w-px h-8 bg-zinc-900 hidden md:block"></div>
+          
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Classification</span>
+            <div class="flex gap-2">
+              {log.data.tags.map(tag => (
+                <span class="text-xs font-bold text-zinc-400">#{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="w-px h-8 bg-zinc-900 hidden md:block"></div>
+
+          <div class="flex flex-col gap-1">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Build Status</span>
+            <span class="flex items-center gap-2 text-sm font-medium text-emerald-500">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Stable
+            </span>
           </div>
         </div>
       </div>

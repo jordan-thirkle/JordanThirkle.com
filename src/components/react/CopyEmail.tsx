@@ -27,14 +27,19 @@ export const CopyEmail: React.FC = () => {
           <Mail className="w-5 h-5" />
         </div>
         <div className="flex flex-col items-start">
-          <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-0.5">Email Address</span>
-          <span className="text-lg font-medium">{email}</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2">Email Address</span>
+          <span className="text-xl font-bold tracking-tight">{email}</span>
         </div>
         <div className="ml-auto pl-8">
           {copied ? (
-            <Check className="w-5 h-5 text-emerald-500" />
+            <div className="flex items-center gap-2 text-emerald-500 animate-in fade-in zoom-in duration-300">
+              <span className="text-[10px] font-bold uppercase tracking-widest hidden xs:inline">Copied</span>
+              <Check className="w-5 h-5" />
+            </div>
           ) : (
-            <Copy className="w-5 h-5 text-zinc-500 group-hover:text-zinc-400" />
+            <div className="p-2 bg-zinc-800 rounded-lg group-hover:bg-zinc-700 transition-colors">
+              <Copy className="w-4 h-4 text-zinc-400 group-hover:text-white" />
+            </div>
           )}
         </div>
       </button>
