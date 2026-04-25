@@ -1,116 +1,58 @@
 import satori from 'satori';
-import { Resvg } from '@resvg/resvg-js';
+import { html } from 'satori-html';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import { getCollection } from 'astro:content';
-import fs from 'fs';
-import path from 'path';
+import { Resvg } from '@resvg/resvg-js';
 
 export async function getStaticPaths() {
-  const blogs = await getCollection('blog');
-  const projects = await getCollection('projects');
+  const blogPosts = await getCollection('blog');
+  const projectPosts = await getCollection('projects');
+  const posts = [...blogPosts, ...projectPosts];
   
-  const entries = [
-    ...blogs.map(post => ({
-      params: { slug: `blog/${post.id}` },
-      props: { title: post.data.title, description: post.data.description },
-    })),
-    ...projects.map(proj => ({
-      params: { slug: `projects/${proj.id}` },
-      props: { title: proj.data.title, description: proj.data.description },
-    })),
-    {
-      params: { slug: 'index' },
-      props: { title: 'Jordan Thirkle', description: 'Full-Stack Architect & Product Engineer' },
-    }
-  ];
-
-  return entries;
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { title: post.data.title },
+  }));
 }
 
-export const GET = async ({ props }) => {
-  const { title, description } = props;
-
-  // Load font from local file system
-  const fontPath = path.join(process.cwd(), 'public/fonts/inter.ttf');
+export async function GET({ props }) {
+  const fontPath = path.join(process.cwd(), 'src/assets/fonts/Inter-Medium.otf');
   const fontData = fs.readFileSync(fontPath);
 
-  const svg = await satori(
-    {
-      type: 'div',
-      props: {
-        children: [
-          {
-            type: 'div',
-            props: {
-              children: 'JT',
-              style: {
-                fontSize: 40,
-                fontWeight: 'bold',
-                color: '#fff',
-                background: '#000',
-                padding: '10px 20px',
-                borderRadius: 10,
-                marginBottom: 20,
-              },
-            },
-          },
-          {
-            type: 'h1',
-            props: {
-              children: title,
-              style: {
-                fontSize: 70,
-                fontWeight: 'bold',
-                color: '#fff',
-                marginBottom: 20,
-                lineHeight: 1.1,
-              },
-            },
-          },
-          {
-            type: 'p',
-            props: {
-              children: description,
-              style: {
-                fontSize: 30,
-                color: '#a1a1aa',
-                lineHeight: 1.4,
-              },
-            },
-          },
-        ],
-        style: {
-          height: '100%',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          backgroundColor: '#09090b',
-          padding: '80px',
-        },
+  const markup = html`
+    <div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #09090b; color: white; padding: 40px; font-family: 'Inter';">
+      <div style="display: flex; flex-direction: column; align-items: center; border: 1px solid #27272a; padding: 60px; border-radius: 24px; background-color: #111113;">
+        <p style="font-size: 24px; color: #3b82f6; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.1em;">Jordan Thirkle // Intelligence Hub</p>
+        <h1 style="font-size: 72px; font-weight: 700; text-align: center; margin-bottom: 20px;">${props.title}</h1>
+        <div style="display: flex; align-items: center; margin-top: 20px;">
+            <span style="font-size: 24px; color: #a1a1aa;">Engineering at the speed of AI</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const svg = await satori(markup, {
+    width: 1200,
+    height: 630,
+    fonts: [
+      {
+        name: 'Inter',
+        data: fontData,
+        weight: 500,
+        style: 'normal',
       },
-    },
-    {
-      width: 1200,
-      height: 630,
-      fonts: [
-        {
-          name: 'Inter',
-          data: fontData,
-          weight: 700,
-          style: 'normal',
-        },
-      ],
-    }
-  );
+    ],
+  });
 
   const resvg = new Resvg(svg);
   const pngData = resvg.render();
   const pngBuffer = pngData.asPng();
 
   return new Response(pngBuffer, {
-    headers: {
+    headers: { 
       'Content-Type': 'image/png',
+      'Cache-Control': 'public, max-age=31536000, immutable'
     },
   });
-};
+}
