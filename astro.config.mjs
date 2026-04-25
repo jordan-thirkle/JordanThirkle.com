@@ -1,39 +1,31 @@
-import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
+import { defineConfig, fontProviders } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
-import icon from 'astro-icon';
 import sitemap from '@astrojs/sitemap';
-
-import { fileURLToPath, URL } from 'node:url';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jordanthirkle.com',
-  vite: {
-    resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
-      },
-    },
-  },
   integrations: [
+    tailwind(),
     react(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
     mdx(),
-    icon(),
     sitemap(),
   ],
-  prefetch: true,
   experimental: {
     rustCompiler: true,
   },
-  fonts: {
-    google: {
-      families: ['Inter', 'Outfit'],
-      display: 'swap',
+  fonts: [
+    {
+      name: 'Inter',
+      cssVariable: '--font-inter',
+      provider: fontProviders.google(),
     },
-  },
+    {
+      name: 'Outfit',
+      cssVariable: '--font-outfit',
+      provider: fontProviders.google(),
+    },
+  ],
 });

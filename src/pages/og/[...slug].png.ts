@@ -29,12 +29,9 @@ export async function getStaticPaths() {
 export const GET = async ({ props }) => {
   const { title, description } = props;
 
-  // Load font
-  // For simplicity in this environment, we'll try to use a local font if we can find one, 
-  // or use a system-like approach. Since we are in a controlled environment, 
-  // let's assume we need to download or have a font.
-  // I will use a reliable URL for a font for this demonstration.
-  const fontData = await fetch('https://github.com/google/fonts/raw/main/ofl/inter/static/Inter-Bold.ttf').then(res => res.arrayBuffer());
+  // Load font from local file system
+  const fontPath = path.join(process.cwd(), 'public/fonts/inter.ttf');
+  const fontData = fs.readFileSync(fontPath);
 
   const svg = await satori(
     {
