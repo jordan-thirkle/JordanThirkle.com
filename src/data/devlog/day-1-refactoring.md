@@ -1,7 +1,7 @@
 ---
 title: "Day 1: Refactoring the core architecture"
 description: "A deep dive into refactoring the project filtering logic using Nanostores for a cleaner Islands architecture."
-pubDate: 2026-04-24
+pubDate: 2026-04-24T14:30:00Z
 tags: ["Architecture", "BuildInPublic", "Astro 6"]
 ---
 

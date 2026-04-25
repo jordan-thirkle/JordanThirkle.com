@@ -5,14 +5,19 @@ const equipment = [
   {
     category: "Hardware",
     items: [
-      { name: "MacBook Pro M3 Max", description: "The powerhouse for everything.", href: "https://www.apple.com/macbook-pro/" },
+      { name: "MacBook M4 Air 15\"", description: "The ultimate portable workhorse.", href: "https://www.apple.com/macbook-air/" },
       { name: "Pro Display XDR", description: "Vibrant colors for dev and design.", href: "https://www.apple.com/pro-display-xdr/" },
       { name: "Keychron Q1 Pro", description: "Satisfying tactile feedback.", href: "https://www.keychron.com/products/keychron-q1-pro-qmk-via-wireless-custom-mechanical-keyboard" },
     ]
   },
   {
-    category: "Software",
+    category: "Software & AI",
     items: [
+      { name: "Antigravity", description: "My primary AI coding partner.", href: "#" },
+      { name: "Gemini AI", description: "Deepmind's most capable model.", href: "https://gemini.google.com/" },
+      { name: "Claude AI", description: "Sophisticated reasoning and writing.", href: "https://claude.ai/" },
+      { name: "ChatGPT", description: "Versatile daily assistant.", href: "https://chatgpt.com/" },
+      { name: "Grok", description: "Real-time info and edgy insights.", href: "https://x.ai/" },
       { name: "VS Code", description: "My primary workstation.", href: "https://code.visualstudio.com/" },
       { name: "Arc Browser", description: "A cleaner web experience.", href: "https://arc.net/" },
       { name: "Warp", description: "Modern terminal with AI integration.", href: "https://www.warp.dev/" },
@@ -28,6 +33,21 @@ const equipment = [
       A curated list of the gear, software, and technologies I use to build digital products at the highest level.
     </p>
   </header>
+
+  <div class="mb-24">
+    <div class="aspect-[21/9] w-full rounded-[2.5rem] overflow-hidden border border-zinc-900 bg-zinc-950 relative group">
+      <img 
+        src="/assets/software/ai-tools.png" 
+        alt="AI Software Stack" 
+        class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+      <div class="absolute bottom-8 left-8">
+        <p class="text-[10px] font-mono font-bold tracking-[0.3em] text-zinc-500 uppercase mb-2">Primary Stack</p>
+        <h2 class="text-2xl font-bold text-white tracking-tight">AI-Native Ecosystem</h2>
+      </div>
+    </div>
+  </div>
 
   <div class="space-y-24">
     {equipment.map((group) => (

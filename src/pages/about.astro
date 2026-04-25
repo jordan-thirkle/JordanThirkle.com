@@ -3,56 +3,98 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import { Mail, Github } from 'lucide-react';
 
 const title = "The Story";
-const description = "Computer Science graduate, solo father, and full-stack architect building the future at the speed of AI.";
+const description = "Computer Science graduate and full-stack architect building the future at the speed of AI.";
 ---
 
 <MainLayout title={title} description={description}>
-  <section class="max-w-4xl mx-auto py-12 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
-      Building the future in the <span class="bg-gradient-to-r from-zinc-50 to-zinc-400 bg-clip-text text-transparent">gaps of the present.</span>
-    </h1>
-
-    <article class="prose prose-invert prose-zinc max-w-3xl mx-auto space-y-6 text-zinc-400 leading-relaxed text-left">
-      <p>
-        I am a Computer Science graduate and a Full-Stack Architect, but my most critical role is being a 24/7 solo father to a bright 5-year-old "Assistant Architect." My career is defined by a commitment to technical excellence and a necessity for extreme efficiency—a byproduct of building high-performance systems in the quiet gaps of a busy life.
+  <section class="max-w-5xl mx-auto py-12">
+    <header class="text-center mb-20">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8">
+        Building the future in the <span class="bg-gradient-to-r from-zinc-50 to-zinc-400 bg-clip-text text-transparent">gaps of the present.</span>
+      </h1>
+      <p class="text-lg text-zinc-400 max-w-2xl mx-auto">
+        I'm a Computer Science graduate and Full-Stack Architect building high-performance ecosystems. My focus is on technical excellence and extreme efficiency.
       </p>
+    </header>
 
-      <p>
-        My technical foundation was built in the rigorous environment of academic computer science, where I learned to appreciate the mathematical beauty of algorithms and the structural integrity of complex systems. However, the real hardening occurred in the real world: balancing the precision of software architecture with the unpredictable reality of solo parenting. This unique pressure transformed my workflow from standard development into a disciplined, AI-accelerated craft.
-      </p>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+      <div class="lg:col-span-7 space-y-12 text-zinc-400 leading-relaxed">
+        <section>
+          <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6">The Mission</h2>
+          <p class="text-xl text-zinc-200 font-medium leading-relaxed">
+            I've transformed my workflow into a disciplined, AI-accelerated craft. This isn't about cutting corners; it's about eliminating the friction between an idea and its execution.
+          </p>
+        </section>
 
-      <h2 class="text-xl font-bold text-white mt-12 mb-4">Engineering at the Speed of AI</h2>
-      <p>
-        I don't just "use" AI; I architect with it. In a world where traditional agencies move at a snail's pace, I've transformed myself into a one-man studio that ships at the speed of thought. By leveraging AI as a force multiplier, I'm able to handle the output of a full engineering team while maintaining a level of code quality and architectural oversight that standard workflows simply can't match.
-      </p>
+        <section>
+          <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6">Building in Public</h2>
+          <p>
+            I believe in transparency. I'm building this entire platform in public, documenting every architectural decision and pivot. I share real-time updates, technical breakthroughs, and the reality of solo-founding over on <a href="https://x.com/jordan_thirkle" class="text-white hover:underline decoration-zinc-700 underline-offset-4 font-medium">X (formerly Twitter)</a>. 
+          </p>
+          <p class="mt-4">
+            The website itself is a living laboratory for <strong>AI-native development</strong>. By leveraging AI as a force multiplier, I'm proving that a solo architect can out-build traditional teams without sacrificing code quality or design integrity.
+          </p>
+        </section>
 
-      <p>
-        This isn't about cutting corners; it's about eliminating the friction between an idea and its execution. It's about using the most advanced tools available to build high-performance web, app, and game ecosystems that are robust, scalable, and beautiful.
-      </p>
+        <section>
+          <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6">What this site is about</h2>
+          <p>
+            This is my digital headquarters. It's where I host my portfolio of games, SaaS applications, and technical writing. It's a place for deep dives into minimalist architecture, performance optimization, and the future of software engineering.
+          </p>
+        </section>
 
-      <h2 class="text-xl font-bold text-white mt-12 mb-4">Building in Public</h2>
-      <p>
-        Transparency is my ultimate currency. By "Building in Public" through my <a href="/devlog" class="text-white hover:underline underline-offset-4">Dev Log</a>, I'm sharing the micro-wins, the technical deep-dives, and the occasional chaotic reality of a "Dad-Dev" lifestyle. It's a verifiable audit trail of my shipping velocity and a proof of work that speaks louder than any resume.
-      </p>
-
-      <p>
-        Whether I'm refactoring a React micro-frontend or debugging a Unity game engine while my daughter naps, my focus remains the same: crafting premium digital experiences that push the boundaries of what a solo developer can accomplish.
-      </p>
-
-      <div class="pt-12 border-t border-zinc-900 mt-12">
-        <p class="text-sm font-medium text-white mb-6">Let's connect and build something extraordinary.</p>
-        <div class="flex gap-4">
-          <a href="/contact" class="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-300 hover:text-white hover:border-zinc-700 transition-all">
-            <Mail class="w-4 h-4" /> Get in Touch
+        <div class="pt-8 border-t border-zinc-900 flex flex-wrap gap-4">
+          <a href="/contact" class="flex items-center gap-2 px-6 py-3 bg-white text-black font-bold rounded-full text-sm hover:bg-zinc-200 transition-all">
+            <Mail class="w-4 h-4" /> Work With Me
           </a>
-          <a href="https://x.com/jordan_thirkle" target="_blank" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300 hover:text-white hover:border-zinc-700 transition-all" aria-label="X Profile">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-          </a>
-          <a href="https://github.com/jordanthirkle" target="_blank" class="p-2.5 bg-zinc-900 border border-zinc-800 rounded-lg text-zinc-300 hover:text-white hover:border-zinc-700 transition-all" aria-label="GitHub Profile">
-            <Github class="w-4 h-4" />
-          </a>
+          <div class="flex gap-2">
+            <a href="https://x.com/jordan_thirkle" target="_blank" class="p-3 bg-zinc-950 border border-zinc-900 rounded-full text-zinc-400 hover:text-white hover:border-zinc-800 transition-all" aria-label="X Profile">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="w-5 h-5 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </a>
+            <a href="https://github.com/jordanthirkle" target="_blank" class="p-3 bg-zinc-950 border border-zinc-900 rounded-full text-zinc-400 hover:text-white hover:border-zinc-800 transition-all" aria-label="GitHub Profile">
+              <Github class="w-5 h-5" />
+            </a>
+          </div>
         </div>
       </div>
-    </article>
+
+      <aside class="lg:col-span-5 space-y-8">
+        <div class="aspect-square rounded-[2.5rem] bg-zinc-950 border border-zinc-900 overflow-hidden relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-zinc-500/10 to-transparent opacity-50"></div>
+          <div class="absolute inset-0 flex items-center justify-center p-12 text-center">
+            <div>
+              <p class="text-zinc-500 font-mono text-xs mb-4 tracking-[0.3em]">SYSTEM STATUS</p>
+              <p class="text-3xl font-bold text-white tracking-tight leading-tight">Shipping at the Speed of AI</p>
+              <div class="mt-8 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold uppercase tracking-widest text-emerald-500">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                Building in Public
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-8 bg-zinc-950 border border-zinc-900 rounded-[2rem]">
+          <h3 class="text-xs font-bold text-zinc-500 mb-6 uppercase tracking-widest">Stack Focus</h3>
+          <ul class="space-y-4">
+            <li class="flex items-center gap-3 text-sm text-zinc-300">
+              <div class="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
+              Astro 6 + React Islands
+            </li>
+            <li class="flex items-center gap-3 text-sm text-zinc-300">
+              <div class="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
+              AI-Native Workflows
+            </li>
+            <li class="flex items-center gap-3 text-sm text-zinc-300">
+              <div class="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
+              Minimalist Architecture
+            </li>
+            <li class="flex items-center gap-3 text-sm text-zinc-300">
+              <div class="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
+              High-Performance UX
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   </section>
 </MainLayout>
