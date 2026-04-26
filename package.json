@@ -42,6 +42,8 @@
     }
   },
   "devDependencies": {
-    "@astrojs/compiler-rs": "^0.1.10"
+    "@astrojs/check": "^0.9.8",
+    "@astrojs/compiler-rs": "^0.1.10",
+    "typescript": "^5.9.3"
   }
 }

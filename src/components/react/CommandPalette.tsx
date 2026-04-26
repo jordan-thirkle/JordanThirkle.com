@@ -59,8 +59,8 @@ export const CommandPalette: React.FC<Props> = ({ searchData }) => {
         return (
           item.name.toLowerCase().includes(q) ||
           item.category.toLowerCase().includes(q) ||
-          item.description?.toLowerCase().includes(q) ||
-          item.tags?.some(tag => tag.toLowerCase().includes(q))
+          ((item as any).description?.toLowerCase().includes(q)) ||
+          ((item as any).tags?.some((tag: string) => tag.toLowerCase().includes(q)))
         );
       })
     : quickAccessItems;

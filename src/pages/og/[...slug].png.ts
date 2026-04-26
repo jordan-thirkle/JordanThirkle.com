@@ -16,7 +16,7 @@ export async function getStaticPaths() {
   }));
 }
 
-export async function GET({ props }) {
+export async function GET({ props }: { props: { title: string } }) {
   const fontPath = path.join(process.cwd(), 'src/assets/fonts/Inter-Medium.otf');
   const fontData = fs.readFileSync(fontPath);
 
@@ -32,7 +32,7 @@ export async function GET({ props }) {
     </div>
   `;
 
-  const svg = await satori(markup, {
+  const svg = await satori(markup as any, {
     width: 1200,
     height: 630,
     fonts: [
@@ -49,7 +49,7 @@ export async function GET({ props }) {
   const pngData = resvg.render();
   const pngBuffer = pngData.asPng();
 
-  return new Response(pngBuffer, {
+  return new Response(pngBuffer as any, {
     headers: { 
       'Content-Type': 'image/png',
       'Cache-Control': 'public, max-age=31536000, immutable'

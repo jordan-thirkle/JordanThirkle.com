@@ -10,9 +10,9 @@ export async function GET(context: APIContext) {
     site: context.site!,
     items: blog.map((post) => ({
       title: post.data.title,
-      pubDate: post.data.date,
+      pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.id}/`,
     })),
   });
 }

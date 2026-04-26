@@ -2,7 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
 import ProjectCard from '@/components/astro/ProjectCard.astro';
-import { SITE_CONFIG } from '@/config';
+
 
 const featuredProjects = await getCollection('projects', ({ data }) => {
   return data.featured === true;
