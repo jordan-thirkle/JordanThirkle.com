@@ -122,6 +122,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
                 <a 
                   href={xShareUrl}
                   target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
@@ -137,6 +138,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
                 <a 
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl || '')}`}
                   target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
