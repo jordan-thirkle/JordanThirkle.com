@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Share2, Linkedin, MessageSquare } from 'lucide-react';
+import { Heart, Share2, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { showToast } from '@/store';
 
@@ -140,7 +140,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
-                  <Linkedin className="w-4 h-4" /> LinkedIn
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn
                 </a>
               </motion.div>
             )}
