@@ -22,7 +22,7 @@ const {
 	canonicalURL = new URL(Astro.url.pathname, Astro.site),
 } = Astro.props;
 
-const formattedTitle = title === 'Jordan Thirkle | Full-Stack Developer & Architect' ? title : `${title} | Jordan Thirkle`;
+
 
 // Fetch search data
 const blogs = await getCollection('blog');
