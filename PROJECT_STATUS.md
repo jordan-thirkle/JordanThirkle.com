@@ -24,7 +24,6 @@
 ## Task Board
 
 ### ✅ Done (this sprint)
-- **CI Pipeline:** Created `.github/workflows/ci.yml` to enforce `npm ci`, `npx astro check`, and `npm run build` on push/PR.
 - **Accessibility sweep:** Added `aria-keyshortcuts`, `focus-visible` styling, and fixed focus outlines across `Navbar`, `Footer`, and `ProjectCard`.
 - **Dependency cleanup:** Removed deprecated components from `lucide-react` (Github -> Mail/custom SVG, Linkedin -> custom SVG).
 - **Scheduled Prompts:** Created `JULES_SCHEDULED_PROMPTS.md` containing daily/weekly prompts for automated content generation.
