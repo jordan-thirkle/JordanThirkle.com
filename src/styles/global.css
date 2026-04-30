@@ -52,3 +52,11 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-zinc-700;
 }
+/* Add scroll margin so when clicking ToC links, the heading isn't hidden under a potential sticky navbar */
+article h2, article h3, article h4, article h5, article h6 {
+  scroll-margin-top: 100px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
