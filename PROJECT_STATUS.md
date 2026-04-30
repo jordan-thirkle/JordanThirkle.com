@@ -6,7 +6,7 @@
   It answers: "What state is the project in at this exact moment?"
 -->
 
-**Last updated**: 2026-04-28
+**Last updated**: 2026-04-30
 **Updated by**: AI Session
 **Build status**: ✅ Passing  
 
@@ -31,6 +31,9 @@
 
 ### 🔄 In Progress
 - None.
+
+### ✅ Done (this session)
+- **SEO & Layout:** Enhanced blog layout with `TableOfContents` component (scrollspy, smooth scrolling), `articleDate`, schema generation, and `robots` optimization.
 
 ### 📋 Up Next
 1. Deploy to Vercel (CI pipeline is now enforcing builds).
