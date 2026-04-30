@@ -63,7 +63,7 @@ category: "[Choose ONE: AI, Web Development, Systems, Design, Productivity]"
 tags: ["[Tag 1]", "[Tag 2]", "[Tag 3]"]
 readTime: "[X] min read"
 draft: false
-image: "/assets/blog/[generated-slug].png"
+image: "/og/[generated-slug].png"
 ---
 
 **TL;DR:** [2-3 sentence summary of the article's core technical thesis]
