@@ -1,34 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Share2, Linkedin, MessageSquare } from 'lucide-react';
+import { Heart, Share2, MessageSquare, Eye } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { showToast } from '@/store';
 
 interface Props {
   title?: string;
   url?: string;
+  path?: string;
+  initialLikes?: number;
+  initialViews?: number;
 }
 
-export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
-  const [likes, setLikes] = useState(0);
+export const EngagementDock: React.FC<Props> = ({ title = '', url = '', path = '', initialLikes = 45, initialViews = 120 }) => {
+  const [likes, setLikes] = useState(initialLikes);
+  const [views, setViews] = useState(initialViews);
   const [hasLiked, setHasLiked] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
   useEffect(() => {
-    const liked = localStorage.getItem('hub-liked') === 'true';
-    const totalLikes = parseInt(localStorage.getItem('hub-total-likes') || '0', 10);
+    if (!path) return;
+
+    // Setup LocalStorage Keys
+    const likedKey = `hub-liked-${path}`;
+    const likesKey = `hub-total-likes-${path}`;
+    const viewsKey = `hub-views-${path}`;
+
+    // Handle Likes
+    const liked = localStorage.getItem(likedKey) === 'true';
+    const storedLikes = localStorage.getItem(likesKey);
     setHasLiked(liked);
-    setLikes(liked ? totalLikes : totalLikes);
-  }, []);
+    if (storedLikes) {
+        setLikes(parseInt(storedLikes, 10));
+    } else {
+        localStorage.setItem(likesKey, initialLikes.toString());
+        setLikes(initialLikes);
+    }
+
+    // Handle Views (increment on load)
+    const storedViews = localStorage.getItem(viewsKey);
+    const newViews = storedViews ? parseInt(storedViews, 10) + 1 : initialViews + 1;
+    setViews(newViews);
+    localStorage.setItem(viewsKey, newViews.toString());
+  }, [path, initialLikes, initialViews]);
 
   const handleLike = () => {
+    if (!path) return;
+    const likedKey = `hub-liked-${path}`;
+    const likesKey = `hub-total-likes-${path}`;
+
     if (hasLiked) {
       setHasLiked(false);
-      setLikes(prev => prev - 1);
-      localStorage.setItem('hub-liked', 'false');
+      setLikes(prev => {
+        const newLikes = prev - 1;
+        localStorage.setItem(likesKey, newLikes.toString());
+        return newLikes;
+      });
+      localStorage.setItem(likedKey, 'false');
     } else {
       setHasLiked(true);
-      setLikes(prev => prev + 1);
-      localStorage.setItem('hub-liked', 'true');
+      setLikes(prev => {
+        const newLikes = prev + 1;
+        localStorage.setItem(likesKey, newLikes.toString());
+        return newLikes;
+      });
+      localStorage.setItem(likedKey, 'true');
       showToast('Thanks for the support!', 'success');
     }
   };
@@ -82,6 +117,13 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
 
         <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
 
+        <div className="flex items-center gap-2 px-4 py-2 text-zinc-400">
+          <Eye className="w-4 h-4" />
+          <span className="text-sm font-medium">{views}</span>
+        </div>
+
+        <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
+
         <a 
           href="#comments"
           aria-label="Scroll to comments"
@@ -122,6 +164,7 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
                 <a 
                   href={xShareUrl}
                   target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
@@ -137,10 +180,11 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '' }) => {
                 <a 
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl || '')}`}
                   target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsShareOpen(false)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white transition-colors"
                 >
-                  <Linkedin className="w-4 h-4" /> LinkedIn
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn
                 </a>
               </motion.div>
             )}

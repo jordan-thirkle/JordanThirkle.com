@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node --experimental-transform-types --test",
+    "generate:devlog": "tsx scripts/generate-devlog.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -44,6 +46,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@astrojs/compiler-rs": "^0.1.10",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }
