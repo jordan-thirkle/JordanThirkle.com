@@ -1,12 +1,12 @@
 ---
 title: "Day 1: Refactoring the core architecture"
-description: "A deep dive into refactoring the project filtering logic using Nanostores for a cleaner Islands architecture."
+description: "Refactoring the project filtering logic with Nanostores for a minimal, zero-BS Islands architecture."
 pubDate: 2026-04-24T14:30:00Z
 tags: ["Architecture", "BuildInPublic", "Astro 6"]
 ---
 
-Today I spent about 2 hours refactoring the core project filtering logic. Moving it to Nanostores allowed for a much cleaner "Islands" setup.
+Spent 2 hours refactoring the core project filtering logic. Shifted state to Nanostores for a cleaner Islands setup. Less bloat, faster execution.
 
-The challenge was ensuring the URL stayed in sync with the client-side state, but the result is a site that feels like a desktop app.
+The main challenge was keeping the URL perfectly synced with client state. Result: a site that responds like a native desktop app. Minimal latency, high velocity.
 
-More updates tomorrow.
+Shipping more tomorrow.
