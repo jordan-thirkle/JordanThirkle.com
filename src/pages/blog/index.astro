@@ -97,6 +97,7 @@ const description = "Articles on minimalist architecture, AI tools, and full-sta
 
   <script>
     import { activeBlogTag, activeBlogView } from '@/store/blog';
+    import { applyCategoryFilter } from '@/utils/dom';
 
     const grid = document.getElementById('blog-grid');
     const timeline = document.getElementById('blog-timeline');
@@ -105,19 +106,8 @@ const description = "Articles on minimalist architecture, AI tools, and full-sta
 
     // Handle Category Filtering
     activeBlogTag.subscribe((filter) => {
-      const applyFilter = (elements: NodeListOf<Element>) => {
-        elements.forEach((el) => {
-          const element = el as HTMLElement;
-          const category = element.dataset.category;
-          if (!filter || category === filter) {
-            element.classList.remove('hidden');
-          } else {
-            element.classList.add('hidden');
-          }
-        });
-      };
-      applyFilter(cards);
-      applyFilter(timelineItems);
+      applyCategoryFilter(cards, filter);
+      applyCategoryFilter(timelineItems, filter);
     });
 
     // Handle View Switching

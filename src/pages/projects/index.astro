@@ -95,6 +95,7 @@ const description = "A collection of my recent SaaS, Games, and Open Source proj
 
   <script>
     import { activeProjectFilter, activeProjectsView } from '@/store/projects';
+    import { applyCategoryFilter } from '@/utils/dom';
 
     const grid = document.getElementById('project-grid');
     const timeline = document.getElementById('project-timeline');
@@ -103,19 +104,8 @@ const description = "A collection of my recent SaaS, Games, and Open Source proj
 
     // Handle Category Filtering
     activeProjectFilter.subscribe((filter) => {
-      const applyFilter = (elements: NodeListOf<Element>) => {
-        elements.forEach((el) => {
-          const element = el as HTMLElement;
-          const category = element.dataset.category;
-          if (!filter || category === filter) {
-            element.classList.remove('hidden');
-          } else {
-            element.classList.add('hidden');
-          }
-        });
-      };
-      applyFilter(cards);
-      applyFilter(timelineItems);
+      applyCategoryFilter(cards, filter);
+      applyCategoryFilter(timelineItems, filter);
     });
 
     // Handle View Switching

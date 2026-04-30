@@ -68,6 +68,7 @@
 -->
 
 ### ✅ Done (this sprint)
+- Refactored DOM filtering logic into shared utility `src/utils/dom.ts`
 - Migrated to Astro 6
 - Tiered crawler strategy implemented in `robots.txt`
 - Centered UI headers refactored site-wide
