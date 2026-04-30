@@ -108,5 +108,5 @@ const toc = headings.filter((h) => h.depth > 1 && h.depth < 4);
     </article>
   </div>
 
-  <EngagementDock client:load title={post.data.title} url={Astro.url.toString()} />
+  <EngagementDock client:load title={post.data.title} url={Astro.url.toString()} path={Astro.url.pathname} initialLikes={post.data.likes} initialViews={post.data.views} />
 </MainLayout>

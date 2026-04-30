@@ -97,5 +97,5 @@ const { Content } = await render(project);
     </div>
   </article>
 
-  <EngagementDock client:load title={project.data.title} url={Astro.url.toString()} />
+  <EngagementDock client:load title={project.data.title} url={Astro.url.toString()} path={Astro.url.pathname} initialLikes={project.data.likes} initialViews={project.data.views} />
 </MainLayout>
