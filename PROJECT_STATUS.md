@@ -24,6 +24,19 @@
 ## Task Board
 
 ### ✅ Done (this sprint)
+- Refactored DOM filtering logic into shared utility `src/utils/dom.ts`
+- Migrated to Astro 6
+- Tiered crawler strategy implemented in `robots.txt`
+- Centered UI headers refactored site-wide
+- Satori OG image pipeline with local fonts
+- About / Uses pages refactored for Visual Authority
+- Dev Log converted to vertical timeline with timestamps
+- **Rebuilt Mobile Menu** with premium animations, proper stacking, and branded footer
+- **Refactored Contact Page** for Symmetrical Authority and normalized spacing
+- **Unified Blog & Projects index** with granular category filtering and view switching (Grid/Timeline)
+- **Updated Content Schemas** with specific categories for AI/Web/Mobile/etc.
+- **Console Audit Complete**: Verified zero runtime errors on all major routes.
+- **Final Visual Audit Complete**: Verified mobile/desktop responsive integrity.
 - **Accessibility sweep:** Added `aria-keyshortcuts`, `focus-visible` styling, and fixed focus outlines across `Navbar`, `Footer`, and `ProjectCard`.
 - **Dependency cleanup:** Removed deprecated components from `lucide-react` (Github -> Mail/custom SVG, Linkedin -> custom SVG).
 - **Scheduled Prompts:** Created `JULES_SCHEDULED_PROMPTS.md` containing daily/weekly prompts for automated content generation.
