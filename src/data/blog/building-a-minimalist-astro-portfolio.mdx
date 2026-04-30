@@ -9,7 +9,9 @@ draft: false
 image: "/assets/blog/minimalist-architecture.png"
 ---
 
+<div aria-atomic="true">
 **TL;DR:** By leveraging Astro 6's partial hydration (React Islands) and moving global state to Nanostores, you can build a highly interactive portfolio that maintains a perfect 100/100 Lighthouse score and ships zero unnecessary JavaScript to the client.
+</div>
 
 ---
 
@@ -17,7 +19,7 @@ The modern web is bloated. We have normalized shipping megabytes of JavaScript j
 
 The solution was a hybrid architecture: **Astro 6** for the static foundation, and **React Islands** for isolated interactivity.
 
-## The Architecture: Static First, Interactive When Necessary
+<h2 id="the-architecture-static-first-interactive-when-necessary">The Architecture: Static First, Interactive When Necessary</h2>
 
 Astro operates on a simple premise: ship HTML by default. If a component doesn't need to be interactive, it shouldn't execute JavaScript on the client.
 
@@ -29,7 +31,7 @@ However, certain elements *demand* interactivity:
 
 These are our "Islands."
 
-### Implementing React Islands
+<h3 id="implementing-react-islands">Implementing React Islands</h3>
 
 Instead of wrapping the entire application in a React context provider, I isolated the interactive components using Astro's `client:*` directives.
 
@@ -57,7 +59,7 @@ import Navbar from '@/components/astro/Navbar.astro';
 
 Notice the `client:idle` directive on the `CommandPalette`. This tells Astro: "Download and execute the React code for this component *only after* the initial page load has finished." This ensures the First Contentful Paint (FCP) remains blistering fast.
 
-## State Management Across Islands
+<h2 id="state-management-across-islands">State Management Across Islands</h2>
 
 The biggest challenge with an Islands architecture is state management. Because your React components are isolated instances, they don't share a common React tree. You can't just throw a `Context.Provider` at the top level.
 
@@ -107,7 +109,7 @@ export function CommandPalette({ searchData }) {
 }
 ```
 
-## The Result: Speed as a Feature
+<h2 id="the-result-speed-as-a-feature">The Result: Speed as a Feature</h2>
 
 This architecture isn't just about satisfying Lighthouse metrics (though getting a 100/100 is nice). It's about respecting the user's hardware and network constraints.
 

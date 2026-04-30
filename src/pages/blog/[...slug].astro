@@ -18,18 +18,35 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
+
+const ogImage = post.data.image ? new URL(post.data.image, Astro.url) : new URL(`/og/blog/${post.id}.png`, Astro.site);
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": post.data.title,
-  "image": [`${Astro.site}og/blog/${post.id}.png`],
+  "image": [ogImage.toString()],
   "datePublished": post.data.pubDate.toISOString(),
-  "dateModified": post.data.pubDate.toISOString(),
+  "dateModified": (post.data.updatedDate || post.data.pubDate).toISOString(),
   "author": [{
       "@type": "Person",
       "name": SITE_CONFIG.name,
-      "url": Astro.site
-    }],
+      "url": Astro.site,
+      "sameAs": [
+        `https://x.com/${SITE_CONFIG.socials.x.replace('@', '')}`,
+        `https://github.com/${SITE_CONFIG.socials.github}`,
+        `https://linkedin.com/in/${SITE_CONFIG.socials.linkedin}`
+      ]
+  }],
+  "publisher": {
+      "@type": "Organization",
+      "name": SITE_CONFIG.name,
+      "url": Astro.site,
+      "logo": {
+        "@type": "ImageObject",
+        "url": new URL('/favicon.svg', Astro.site).toString()
+      }
+  },
   "description": post.data.description
 };
 
@@ -43,7 +60,7 @@ const schema = {
 <MainLayout 
   title={post.data.title} 
   description={post.data.description}
-  image={`/og/blog/${post.id}.png`}
+  image={post.data.image || `/og/blog/${post.id}.png`}
   articleDate={post.data.pubDate}
 >
   <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

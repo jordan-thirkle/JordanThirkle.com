@@ -9,7 +9,9 @@ draft: false
 image: "/assets/blog/high-performance-dom-filtering.png"
 ---
 
+<div aria-atomic="true">
 **TL;DR:** You do not need React to build interactive UI filters. By dropping complex client-side state and using pure, vanilla JS to manipulate the DOM, you can maintain a zero-JS baseline in Astro 6 while delivering instantaneous category filtering.
+</div>
 
 ---
 
@@ -21,7 +23,7 @@ We are using **Astro 6**. The goal is a zero-JS baseline. If an interaction does
 
 Here is how I implemented high-performance, instantaneous DOM filtering using zero framework overhead.
 
-## The Architecture of Vanilla Filtering
+<h2 id="the-architecture-of-vanilla-filtering">The Architecture of Vanilla Filtering</h2>
 
 The strategy is brutally simple, mirroring the Unix philosophy of doing one thing well:
 1.  **Server-Side Render (SSR) everything**: Render all elements unconditionally on the server.
@@ -30,7 +32,7 @@ The strategy is brutally simple, mirroring the Unix philosophy of doing one thin
 
 No Virtual DOM. No reconciliation loop. No React Context. Just raw DOM node manipulation. This approach represents a massive shift back to the fundamentals of the web, proving that complex architectures are often a solution looking for a problem.
 
-## The Implementation Deep Dive
+<h2 id="the-implementation-deep-dive">The Implementation Deep Dive</h2>
 
 Let's look at the exact code required to implement this. First, we define a shared utility function. This keeps the logic centralized, testable, and reusable across different pages. I recently refactored this into `src/utils/dom.ts`:
 
@@ -57,7 +59,7 @@ export const applyCategoryFilter = (
 
 This function does exactly one thing: it iterates over a NodeList or an Array of elements, checks their `dataset.category`, and adds or removes the `hidden` class. The `hidden` class is a standard Tailwind CSS utility mapping to `display: none`. This is a constant-time `O(N)` operation where N is the number of elements on the page, executed natively by the browser's optimized CSS engine.
 
-### Wiring it up in Astro
+<h3 id="wiring-it-up-in-astro">Wiring it up in Astro</h3>
 
 The magic of Astro is how it handles client-side scripts. In your `.astro` component, you simply add a standard `<script>` tag. Astro will automatically bundle, transpile, and minify this script, but critically, it executes natively on the client *without* hydrating a framework runtime.
 
@@ -118,7 +120,7 @@ const items = [
 
 In this example, everything inside the `---` code fence runs exclusively on the server at build time. The HTML is generated statically. The `<script>` block is shipped to the client, amounting to just a few hundred bytes of JavaScript. When a user clicks a button, the filtering happens instantly without any loading states or VDOM diffing.
 
-## Why This Matters for Performance
+<h2 id="why-this-matters-for-performance">Why This Matters for Performance</h2>
 
 This approach might seem overly simplistic, but that is precisely the point. The lack of complexity is a feature, not a bug.
 
@@ -127,7 +129,7 @@ This approach might seem overly simplistic, but that is precisely the point. The
 *   **Graceful Degradation and Progressive Enhancement:** If JavaScript fails to load (perhaps due to a spotty connection or a corporate firewall), or if the user has disabled it entirely, all items remain visible. The site doesn't break; it just degrades gracefully. The core content remains accessible.
 *   **Simplified Mental Model:** By removing the abstraction of a VDOM, we reduce cognitive load. The code does exactly what it says it does: it finds elements and hides them. There are no lifecycle hooks, dependency arrays, or stale closures to worry about.
 
-## The Architect's Perspective
+<h2 id="the-architects-perspective">The Architect's Perspective</h2>
 
 When building systems, ask yourself if you are solving a complex problem or just throwing a complex tool at a simple one. We've been conditioned to think that modern web development requires modern, heavy tools. This is a fallacy.
 

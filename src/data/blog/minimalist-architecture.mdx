@@ -10,7 +10,9 @@ featured: true
 image: "/assets/blog/minimalist-architecture.png"
 ---
 
+<div aria-atomic="true">
 **TL;DR:** Modern web architecture is often over-engineered. By adopting a **Zero-JS baseline** with Astro and only hydrating interactive "Islands" with React, we achieve maximum performance and minimalist elegance without sacrificing user experience.
+</div>
 
 ---
 
@@ -18,7 +20,7 @@ image: "/assets/blog/minimalist-architecture.png"
 
 Welcome to the inaugural post on the new **Creator Hub**. Building a portfolio today often involves over-engineering with heavy frameworks that hydrate the entire page. 
 
-## The Zero-JS Baseline
+<h2 id="the-zerojs-baseline">The Zero-JS Baseline</h2>
 
 By using Astro, we ensure that the baseline for every page is exactly zero kilobytes of Javascript. We only ship JS when interaction is strictly necessary—like the Command Palette or the Engagement Dock.
 
