@@ -9,9 +9,10 @@ interface Props {
   path?: string;
   initialLikes?: number;
   initialViews?: number;
+  showComments?: boolean;
 }
 
-export const EngagementDock: React.FC<Props> = ({ title = '', url = '', path = '', initialLikes = 45, initialViews = 120 }) => {
+export const EngagementDock: React.FC<Props> = ({ title = '', url = '', path = '', initialLikes = 0, initialViews = 0, showComments = true }) => {
   const [likes, setLikes] = useState(initialLikes);
   const [views, setViews] = useState(initialViews);
   const [hasLiked, setHasLiked] = useState(false);
@@ -122,15 +123,19 @@ export const EngagementDock: React.FC<Props> = ({ title = '', url = '', path = '
           <span className="text-sm font-medium">{views}</span>
         </div>
 
-        <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
+        {showComments && (
+          <>
+            <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
 
-        <a 
-          href="#comments"
-          aria-label="Scroll to comments"
-          className="p-2.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
-        >
-          <MessageSquare className="w-4 h-4" />
-        </a>
+            <a
+              href="#comments"
+              aria-label="Scroll to comments"
+              className="p-2.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
+            >
+              <MessageSquare className="w-4 h-4" />
+            </a>
+          </>
+        )}
 
         <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
 
