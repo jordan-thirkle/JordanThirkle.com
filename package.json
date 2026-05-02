@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "node --experimental-transform-types --test",
-    "generate:devlog": "tsx scripts/generate-devlog.ts"
+    "generate:devlog": "tsx scripts/generate-devlog.ts",
+    "generate:blog": "tsx scripts/generate-blog.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
