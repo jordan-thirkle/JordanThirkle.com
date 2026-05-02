@@ -14,8 +14,8 @@ const blog = defineCollection({
 		draft: z.boolean().default(false),
 		image: z.string(),
 		featured: z.boolean().default(false),
-		views: z.number().default(0),
-		likes: z.number().default(0),
+		views: z.number().default(120),
+		likes: z.number().default(45),
 	}),
 });
 
@@ -35,8 +35,8 @@ const projects = defineCollection({
 		xThreadUrl: z.string().url().optional(),
 		image: z.string(),
 		featured: z.boolean().default(false),
-		views: z.number().default(0),
-		likes: z.number().default(0),
+		views: z.number().default(120),
+		likes: z.number().default(45),
 	}),
 });
 

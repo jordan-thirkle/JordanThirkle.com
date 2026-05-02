@@ -1,16 +1,16 @@
 ---
 title: "Day 3: Desktop Migration and Launch Hardening"
-description: "Synced the repo, locked dependencies, and verified build stability on the desktop rig. Fast and stable."
+description: "Resuming the portfolio hardening from the desktop environment, verifying build stability, and finalizing production components."
 pubDate: 2026-04-25T20:30:00Z
 tags: ["DevOps", "Production", "Git", "Giscus"]
 ---
 
-Core architecture is stable. Shifted to the desktop workstation to execute the launch sequence. Repo synced, dependencies locked. Build pipeline clears in under 16 seconds. Efficiency is key.
+With the core architecture stabilized, I've transitioned back to the desktop workstation to finalize the launch sequence. The repo is fully synced, dependencies are locked, and the build pipeline is clearing in under 16 seconds.
 
-Updates shipped:
-- **Environment Sync:** Restored local dev environment. Locked in latest Astro 6 and Vite configs.
-- **Build Verification:** Ran a flawless production build on Windows. Crushed path-alias discrepancies.
-- **Component Hardening:** Refactored Giscus comments for bulletproof environment handling. Verified ID integrity for live threads.
-- **Asset Audit:** Scrubbed all placeholders. Ensured presentation meets "Senior Architect" standards. Zero compromises.
+Key updates:
+- **Environment Sync:** Restored the local dev environment with the latest Astro 6 and Vite configurations.
+- **Build Verification:** Successfully ran a production build on Windows, resolving any remaining path-alias discrepancies.
+- **Component Hardening:** Refactoring Giscus comments for better environment handling and verifying ID integrity for the live discussion thread.
+- **Asset Audit:** Performing a final scrub of placeholders to ensure a "Senior Architect" tier presentation.
 
-Next up: Vercel deployment and Lighthouse performance validation.
+Next up: Final deployment to Vercel and real-world Lighthouse validation.

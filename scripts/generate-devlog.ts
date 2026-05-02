@@ -46,17 +46,16 @@ ${commits.length > 0 ? commits.join('\n') : "No significant commits found. Write
 
 Synthesize these commits into a concise, narrative-driven Dev Log. Do not just list commits; explain *what* architectural decisions were made, *why* bugs occurred, and *how* features were shipped etc.
 Match the "Architect-Dad" brand voice: authoritative, minimalist, focused on shipping velocity and zero-BS engineering.
-Format the output strictly as an MDX file and do not include any other conversational text. Make sure the description is maximum 160 characters to pass validation.
-Use the following frontmatter schema:
+Format the output as an MDX file. Use the following frontmatter schema:
 
 ---
 title: "[Catchy, minimalist title summarizing the main effort]"
-description: "[1-2 sentence summary of the updates, MAX 160 CHARACTERS]"
+description: "[1-2 sentence summary of the updates]"
 pubDate: ${new Date().toISOString().split('T')[0]}T12:00:00Z
 tags: ["[Relevant Tag 1]", "[Relevant Tag 2]"]
 ---
 
-[Body of the dev log using clean markdown, strict bullet points for specific updates, and short paragraphs. No fluff.]`;
+[Body of the dev log using clean markdown, bullet points for specific updates, and short paragraphs.]`;
 
   const requestBody = {
     contents: [

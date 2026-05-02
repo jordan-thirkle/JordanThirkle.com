@@ -72,11 +72,11 @@ None.
 
 | Check | Status | Last verified |
 |---|---|---|
-| `npm run build` | ✅ | 2026-04-30 |
-| TypeScript (`tsc --noEmit`) | ✅ | 2026-04-30 |
-| ESLint | ✅ | 2026-04-30 |
-| Mobile viewport QA | ✅ | 2026-04-30 |
-| Desktop viewport QA | ✅ | 2026-04-30 |
+| `npm run build` | ✅ | 2026-04-28 |
+| TypeScript (`tsc --noEmit`) | ✅ | 2026-04-28 |
+| ESLint | ⚠️ | 2026-04-28 (Config missing, ignoring for now as `astro check` covers types) |
+| Mobile viewport QA | ✅ | 2026-04-28 |
+| Desktop viewport QA | ✅ | 2026-04-28 |
 | Vercel preview deploy | ⏳ Pending | — |
 
 ---
