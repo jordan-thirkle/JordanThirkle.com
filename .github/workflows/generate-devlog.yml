@@ -32,6 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_ACTOR: ${{ github.actor }}
+          TIMEFRAME_DAYS: 7
         run: npm run generate:devlog
 
       - name: Commit and push changes
